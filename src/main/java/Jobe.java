@@ -1,45 +1,51 @@
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-
 public class Jobe {
-  private Scanner scanner;
-  private List<String> taskList;
-  boolean isExit = false;
+  private Ui ui;
+  private TaskList taskList;
+  private boolean isExit = false;
 
   public Jobe() {
-    scanner = new Scanner(System.in);
-    taskList = new ArrayList<>();
+    this.ui = new Ui();
+    this.taskList = new TaskList();
   }
 
   public void run() {
-    System.out.println("Hello! I'm Jobe.");
-    System.out.println("What can I do for you?");
+    ui.sayHello();
 
-  while (!this.isExit) {
-    String input = this.scanner.nextLine();
-    
-    switch (input) {
-      case "bye":
-        System.out.println("Bye. Hope to see you again soon!");
-        this.isExit = true;
-        break;
-      case "list":
-        this.printList();
-        break;
-      default:
-        this.taskList.add(input);
-        System.out.println("added: " + input);
-        break;
+    while (!this.isExit) {
+      String input = ui.readMessage();
+      String[] splitString = input.split(" ");
+      
+      switch (splitString[0]) {
+        case "bye":
+          ui.sayBye();
+          this.isExit = true;
+          break;
+          
+        case "list":
+          System.out.println(this.taskList.toString());
+          break;
+          
+        case "mark": {
+          int index = Integer.parseInt(splitString[1]) - 1;
+          taskList.getTask(index).setDone();
+          System.out.println("Nice! I've marked this task as done:");
+          System.out.println(taskList.getTask(index));
+          break;
+        }
+        
+        case "unmark": {
+          int index = Integer.parseInt(splitString[1]) - 1;
+          taskList.getTask(index).setUndone();
+          System.out.println("OK, I've marked this task as not done yet:");
+          System.out.println(taskList.getTask(index));
+          break;
+        }
+        
+        default:
+          this.taskList.addTask(new Task(input));
+          System.out.println("added: " + input);
+          break;
       }
-    }
-  }
-
-  public void printList() {
-    int count = 1;
-    for (String task : taskList) {
-      System.out.println(count + ". " + task);
-      count++;
     }
   }
 
