@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ./src/main/java/ui.Ui.java
+=======
+./src/main/java/Ui.java
+>>>>>>> 45d4f7f (Add automated text UI testing)
 ./src/main/java/parser/Parser.java
 ./src/main/java/task/TaskList.java
 ./src/main/java/task/TodoTask.java
