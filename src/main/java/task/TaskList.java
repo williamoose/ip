@@ -21,6 +21,11 @@ public class TaskList {
     return this.listOfTasks.get(index);
   }
   
+  public void removeTask(int index) {
+    this.listOfTasks.remove(index);
+    this.numOfTasks--;
+  }
+  
   public String toString() {
     StringBuilder str = new StringBuilder("Here are the tasks in your list:\n");
     int count = 1;

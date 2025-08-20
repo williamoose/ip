@@ -6,14 +6,14 @@ import exception.*;
 public class Jobe {
   private TaskList taskList;
   private boolean isExit = false;
-
+  
   public Jobe() {
     this.taskList = new TaskList();
   }
-
+  
   public void run() {
     Ui.sayHello();
-
+    
     while (!this.isExit) {
       try {
         String input = Ui.readMessage();
@@ -47,10 +47,12 @@ public class Jobe {
               int index = Integer.parseInt(splitString[1]) - 1;
               
               if (index > this.taskList.size()) {
-                throw new JobeException("OOPS!!!! You are trying to mark a task which does not exist!");
+                throw new JobeException(
+                  "OOPS!!!! You are trying to mark a task which does not exist!"
+                );
               }
               
-              taskList.getTask(index).setDone();
+              this.taskList.getTask(index).setDone();
               System.out.println("Nice! I've marked this task as done:");
               System.out.println(taskList.getTask(index));
             } catch (JobeException e) {
@@ -64,10 +66,12 @@ public class Jobe {
               int index = Integer.parseInt(splitString[1]) - 1;
               
               if (index > this.taskList.size()) {
-                throw new JobeException("OOPS!!!! You are trying to unmark a task which does not exist!");
+                throw new JobeException(
+                  "OOPS!!!! You are trying to unmark a task which does not exist!"
+                );
               }
               
-              taskList.getTask(index).setUndone();
+              this.taskList.getTask(index).setUndone();
               System.out.println("OK, I've marked this task as not done yet:");
               System.out.println(taskList.getTask(index));
             } catch (JobeException e) {
@@ -100,7 +104,9 @@ public class Jobe {
               String[] splitStringBySlash = Parser.removeCommandWord(splitString).split("/");
               
               if (splitStringBySlash[0].isBlank()) {
-                throw new JobeException("OOPS!!!! The description of a deadline task cannot be empty!");
+                throw new JobeException(
+                  "OOPS!!!! The description of a deadline task cannot be empty!"
+                );
               }
               
               if (splitStringBySlash.length < 2) {
@@ -122,7 +128,9 @@ public class Jobe {
             String[] splitStringBySlash = Parser.removeCommandWord(splitString).split("/");
             
             if (splitStringBySlash[0].isBlank()) {
-              throw new JobeException("OOPS!!!! The description of an event task cannot be empty!");
+              throw new JobeException(
+                "OOPS!!!! The description of an event task cannot be empty!"
+              );
             }
             
             if (splitStringBySlash.length < 2) {
@@ -145,15 +153,40 @@ public class Jobe {
             break;
           }
           
+          case "delete": {
+            try {
+              int index = Integer.parseInt(splitString[1]) - 1;
+              
+              if (index > this.taskList.size()) {
+                throw new JobeException(
+                  "OOPS!!!! You are trying to delete a task which does not exist!"
+                );
+              }
+              
+              Task task = this.taskList.getTask(index);
+              this.taskList.removeTask(index);
+              System.out.println("Noted. I've removed this task:");
+              System.out.println(task.toString());
+              System.out.println("Now you have " + this.taskList.size() + " tasks in the list");
+            } catch (JobeException e) {
+              System.out.println(e.getMessage());
+            }
+            break;
+          }
+          
           default:
-            throw new JobeException("OOPS!!!! I'm Sorry, but I am not sure what you mean.");
+            throw new JobeException(
+              "OOPS!!!! I'm Sorry, but I am not sure what you mean."
+            );
         }
       } catch (JobeException e) {
         System.out.println(e.getMessage());
+      } catch (Exception e) {
+        System.out.println("Something went wrong... Try again later!");
       }
     }
   }
-
+  
   public static void main(String[] args) {
     Jobe jobe = new Jobe();
     jobe.run();
