@@ -1,22 +1,20 @@
+package ui;
+
 import java.util.Scanner;
 
 public class Ui {
-  private Scanner sc;
+  private static Scanner sc = new Scanner(System.in);
   
-  public Ui() {
-    this.sc = new Scanner(System.in);
-  }
-  
-  public void sayHello() {
+  public static void sayHello() {
     System.out.println("Hello! I'm Jobe.");
     System.out.println("What can I do for you?");
   }
   
-  public String readMessage() {
-    return this.sc.nextLine();
+  public static String readMessage() {
+    return sc.nextLine();
   }
   
-  public void sayBye() {
+  public static void sayBye() {
     System.out.println("Bye. Hope to see you again soon!");
   }
 }
