@@ -1,3 +1,5 @@
+package Task;
+
 public class Task {
   private boolean isDone;
   private String taskDescription;
@@ -7,19 +9,19 @@ public class Task {
     this.taskDescription = taskDescription;
   }
   
-  public String toString() {
-    return printStatus() + " " + this.taskDescription;
-  }
-  
-  public String printStatus() {
-    return isDone ? "[X]" : "[ ]";
-  }
-  
   public void setDone() {
     this.isDone = true;
   }
   
   public void setUndone() {
     this.isDone = false;
+  }
+  
+  public String printStatus() {
+    return isDone ? "[X]" : "[ ]";
+  }
+  
+  public String toString() {
+    return printStatus() + " " + this.taskDescription;
   }
 }

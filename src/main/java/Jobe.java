@@ -1,3 +1,5 @@
+import Task.*;
+
 public class Jobe {
   private Ui ui;
   private TaskList taskList;
@@ -38,6 +40,40 @@ public class Jobe {
           taskList.getTask(index).setUndone();
           System.out.println("OK, I've marked this task as not done yet:");
           System.out.println(taskList.getTask(index));
+          break;
+        }
+        
+        case "todo": {
+          String taskDescription = Parser.removeCommandWord(splitString);
+          Task task = new TodoTask(taskDescription);
+          this.taskList.addTask(task);
+          System.out.println("Got it. I've added this task:");
+          System.out.println(task.toString());
+          System.out.println("Now you have " + this.taskList.size() + " tasks in the list");
+          break;
+        }
+        
+        case "deadline": {
+          String[] splitStringBySlash = Parser.removeCommandWord(splitString).split("/");
+          Task task = new DeadlineTask(splitStringBySlash[0], splitStringBySlash[1]);
+          this.taskList.addTask(task);
+          System.out.println("Got it. I've added this task:");
+          System.out.println(task.toString());
+          System.out.println("Now you have " + this.taskList.size() + " tasks in the list");
+          break;
+        }
+        
+        case "event": {
+          String[] splitStringBySlash = Parser.removeCommandWord(splitString).split("/");
+          Task task = new EventTask(
+            splitStringBySlash[0],
+            splitStringBySlash[1],
+            splitStringBySlash[2]
+          );
+          this.taskList.addTask(task);
+          System.out.println("Got it. I've added this task:");
+          System.out.println(task.toString());
+          System.out.println("Now you have " + this.taskList.size() + " tasks in the list");
           break;
         }
         
