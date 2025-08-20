@@ -23,14 +23,15 @@ public class Jobe {
         }
         
         String[] splitString = input.split(" ");
+        Command command = Command.stringToCommand(splitString[0]);
         
-        switch (splitString[0]) {
-          case "bye":
+        switch (command) {
+          case BYE:
             Ui.sayBye();
             this.isExit = true;
             break;
           
-          case "list":
+          case LIST:
             try {
               if (this.taskList.size() <= 0) {
                 throw new JobeException("OOPS!!!! You have nothing in your list!");
@@ -42,7 +43,7 @@ public class Jobe {
             }
             break;
           
-          case "mark": {
+          case MARK: {
             try {
               int index = Integer.parseInt(splitString[1]) - 1;
               
@@ -63,7 +64,7 @@ public class Jobe {
             break;
           }
           
-          case "unmark": {
+          case UNMARK: {
             try {
               int index = Integer.parseInt(splitString[1]) - 1;
               
@@ -84,7 +85,7 @@ public class Jobe {
             break;
           }
           
-          case "todo": {
+          case TODO: {
             try {
               String taskDescription = Parser.removeCommandWord(splitString);
               
@@ -103,7 +104,7 @@ public class Jobe {
             break;
           }
           
-          case "deadline": {
+          case DEADLINE: {
             try {
               String[] splitStringBySlash = Parser.removeCommandWord(splitString).split("/");
               
@@ -128,7 +129,7 @@ public class Jobe {
             break;
           }
           
-          case "event": {
+          case EVENT: {
             String[] splitStringBySlash = Parser.removeCommandWord(splitString).split("/");
             
             if (splitStringBySlash[0].isBlank()) {
@@ -157,7 +158,7 @@ public class Jobe {
             break;
           }
           
-          case "delete": {
+          case DELETE: {
             try {
               int index = Integer.parseInt(splitString[1]) - 1;
               

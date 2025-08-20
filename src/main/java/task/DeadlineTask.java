@@ -1,5 +1,7 @@
 package task;
 
+import java.util.Arrays;
+
 public class DeadlineTask extends Task {
   
   private String deadline;
@@ -11,7 +13,9 @@ public class DeadlineTask extends Task {
   
   @Override
   public String toString() {
-    String deadline = this.deadline.split(" ")[1];
+    String[] deadlineSplit = this.deadline.split(" ");
+    String[] deadlineSliced = Arrays.copyOfRange(deadlineSplit, 1, deadlineSplit.length);
+    String deadline = String.join(" ", deadlineSliced);
     return "  [D]" + super.toString() + "(by: " + deadline + ")";
   }
 }
