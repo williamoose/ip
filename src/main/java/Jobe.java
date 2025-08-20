@@ -57,6 +57,8 @@ public class Jobe {
               System.out.println(taskList.getTask(index));
             } catch (JobeException e) {
               System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+              throw new JobeException("OOPS!!!! The index must be a number!");
             }
             break;
           }
@@ -76,6 +78,8 @@ public class Jobe {
               System.out.println(taskList.getTask(index));
             } catch (JobeException e) {
               System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+              throw new JobeException("OOPS!!!! The index must be a number!");
             }
             break;
           }
@@ -170,6 +174,8 @@ public class Jobe {
               System.out.println("Now you have " + this.taskList.size() + " tasks in the list");
             } catch (JobeException e) {
               System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+              throw new JobeException("OOPS!!!! The index must be a number!");
             }
             break;
           }
