@@ -1,4 +1,6 @@
-package Task;
+package task;
+
+import parser.Parser;
 
 public class EventTask extends Task {
   
