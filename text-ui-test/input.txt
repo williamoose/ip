@@ -8,4 +8,9 @@ mark 3
 unmark 2
 mark 4
 list
+delete 4
+delete 3
+list
+delete 4
+hello
 bye

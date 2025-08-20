@@ -14,7 +14,7 @@ public enum Command {
     try {
       return Command.valueOf(input.toUpperCase());
     } catch (IllegalArgumentException e) {
-      throw new JobeException("OOPS!!!! I'm sorry, but I don't know what you mean.");
+      throw new JobeException("OOPS!!!! I'm Sorry, but I am not sure what you mean.");
     }
   }
 }
