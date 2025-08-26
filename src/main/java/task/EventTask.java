@@ -34,6 +34,6 @@ public class EventTask extends Task {
     
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(from: " + fromDate + " to: " + toDate + ")";
+        return "[E]" + super.toString() + "(" + fromDate + " -> " + toDate + ")";
     }
 }

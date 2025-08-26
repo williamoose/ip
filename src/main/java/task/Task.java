@@ -28,7 +28,7 @@ public class Task {
     
     public String convertToFileFormat() {
         String completionStatus = isDone ? "[X]" : "[ ]";
-        return completionStatus + " / " + taskDescription.trim();
+        return completionStatus + " / " + taskDescription;
     }
     
     public String toString() {
