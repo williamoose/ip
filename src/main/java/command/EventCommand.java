@@ -1,5 +1,6 @@
 package command;
 
+import storage.Storage;
 import task.DeadlineTask;
 import task.EventTask;
 import task.Task;
@@ -18,9 +19,10 @@ public class EventCommand extends Command {
     }
     
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
         Task task = new EventTask(this.taskDescription, this.fromTime, this.toTime);
         taskList.addTask(task);
+        storage.saveTasks(taskList);
         System.out.println("Got it. I've added this task:");
         System.out.println(task.toString());
         System.out.println("Now you have " + taskList.size() + " tasks in the list");

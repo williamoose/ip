@@ -2,6 +2,7 @@ package task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
     
@@ -33,11 +34,16 @@ public class TaskList {
             str.append(count).append(". ").append(task).append("\n");
             count++;
         }
-        
         return str.toString();
     }
     
     public int size() {
         return this.numOfTasks;
+    }
+    
+    public String convertToFileFormat() {
+        return listOfTasks.stream()
+                .map(Task::convertToFileFormat)
+                .collect(Collectors.joining("\n"));
     }
 }

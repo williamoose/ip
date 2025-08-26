@@ -3,6 +3,7 @@ package parser;
 import command.*;
 import exception.JobeException;
 import stringutils.StringUtils;
+import task.*;
 
 public class Parser {
     
@@ -30,7 +31,7 @@ public class Parser {
                 throw new JobeException("OOPS!!!! The index must be a number!");
             }
         case TODO: {
-            String taskDescription = StringUtils.removeCommandWord(splitString);
+            String taskDescription = StringUtils.removeFirstWord(splitString);
             
             if (taskDescription.isBlank()) {
                 throw new JobeException("OOPS!!!! The description of a todo cannot be empty!");
@@ -39,7 +40,7 @@ public class Parser {
             return new TodoCommand(taskDescription);
         }
         case DEADLINE: {
-            String[] taskDescription = StringUtils.removeCommandWord(splitString).split("/");
+            String[] taskDescription = StringUtils.removeFirstWord(splitString).split("/");
             
             if (taskDescription[0].isBlank()) {
                 throw new JobeException("OOPS!!!! The description of a deadline task cannot be empty!");
@@ -52,7 +53,7 @@ public class Parser {
             return new DeadlineCommand(taskDescription[0], taskDescription[1]);
         }
         case EVENT: {
-            String[] taskDescription = StringUtils.removeCommandWord(splitString).split("/");
+            String[] taskDescription = StringUtils.removeFirstWord(splitString).split("/");
             
             if (taskDescription[0].isBlank()) {
                 throw new JobeException("OOPS!!!! The description of an event task cannot be empty!");
@@ -77,6 +78,29 @@ public class Parser {
             }
         default:
             throw new JobeException("OOPS!!!! I'm Sorry, but I am not sure what you mean.");
+        }
+    }
+    
+    public static Task parseTask(String input) throws JobeException {
+        String[] splitString = input.split(" / ");
+        TaskType taskType = TaskType.stringToCommand(splitString[0]);
+        
+        // if splitString[1] equals to "[X]" means that it has been marked as done
+        // and hence isDone is true.
+        boolean isDone = splitString[1].equals("[X]");
+        String taskDescription = splitString[2];
+        switch(taskType) {
+        case D:
+            String deadline = splitString[3];
+            return new DeadlineTask(taskDescription, deadline, isDone);
+        case E:
+            String fromDate = splitString[3];
+            String toDate = splitString[4];
+            return new EventTask(taskDescription, fromDate, toDate, isDone);
+        case T:
+            return new TodoTask(taskDescription, isDone);
+        default:
+            throw new JobeException("OOPS!!!! Task parsing failed");
         }
     }
 }

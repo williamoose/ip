@@ -9,6 +9,11 @@ public class Task {
         this.taskDescription = taskDescription;
     }
     
+    public Task(String taskDescription, boolean isDone) {
+        this.isDone = isDone;
+        this.taskDescription = taskDescription;
+    }
+    
     public void setDone() {
         this.isDone = true;
     }
@@ -19,6 +24,11 @@ public class Task {
     
     public String printStatus() {
         return isDone ? "[X]" : "[ ]";
+    }
+    
+    public String convertToFileFormat() {
+        String completionStatus = isDone ? "[X]" : "[ ]";
+        return completionStatus + " / " + taskDescription.trim();
     }
     
     public String toString() {

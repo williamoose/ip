@@ -1,13 +1,14 @@
 package command;
 
 import exception.JobeException;
+import storage.Storage;
 import task.TaskList;
 import ui.Ui;
 
 public class ListCommand extends Command {
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
             if (taskList.size() <= 0) {
                 throw new JobeException("OOPS!!!! You have nothing in your list!");

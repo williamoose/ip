@@ -12,6 +12,9 @@ then
     rm ACTUAL.TXT
 fi
 
+# Delete the old jobe.txt before running tests
+rm -f ./data/jobe.txt
+
 # Find all .java files recursively under src/main/java
 find ../src/main/java -name "*.java" > sources.txt
 
