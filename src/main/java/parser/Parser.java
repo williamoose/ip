@@ -78,14 +78,12 @@ public class Parser {
                 throw new JobeException("OOPS!!!! The index must be a number!");
             }
         case FIND:
-            String keywords = splitString[1];
-            
-            if (keywords.isBlank()) {
+            if (splitString.length < 2 || splitString[1].isBlank()) {
                 throw new JobeException("OOPS!!!! You forgot to enter your keyword!");
             }
             
+            String keywords = splitString[1];
             return new FindCommand(keywords);
-            
         default:
             throw new JobeException("OOPS!!!! I'm Sorry, but I am not sure what you mean.");
         }
