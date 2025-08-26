@@ -1,5 +1,6 @@
 package command;
 
+import exception.JobeException;
 import storage.Storage;
 import task.DeadlineTask;
 import task.Task;
@@ -16,7 +17,7 @@ public class DeadlineCommand extends Command {
     }
     
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
         Task task = new DeadlineTask(this.taskDescription, this.deadline);
         taskList.addTask(task);
         storage.saveTasks(taskList);

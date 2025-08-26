@@ -1,5 +1,6 @@
 package command;
 
+import exception.JobeException;
 import storage.Storage;
 import task.DeadlineTask;
 import task.EventTask;
@@ -19,7 +20,7 @@ public class EventCommand extends Command {
     }
     
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
         Task task = new EventTask(this.taskDescription, this.fromTime, this.toTime);
         taskList.addTask(task);
         storage.saveTasks(taskList);
