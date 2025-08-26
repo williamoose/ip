@@ -26,6 +26,10 @@ public class Task {
         return isDone ? "[X]" : "[ ]";
     }
     
+    public String getTaskDescription() {
+        return this.taskDescription;
+    }
+    
     public String convertToFileFormat() {
         String completionStatus = isDone ? "[X]" : "[ ]";
         return completionStatus + " / " + taskDescription;
