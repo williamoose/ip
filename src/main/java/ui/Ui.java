@@ -10,7 +10,7 @@ public class Ui {
     }
     
     public void sayHello() {
-        System.out.println("Hello! I'm Jobe.");
+        System.out.println("\n" + "Hello! I'm Jobe.");
         System.out.println("What can I do for you?");
     }
     
@@ -20,5 +20,6 @@ public class Ui {
     
     public void sayBye() {
         System.out.println("Bye. Hope to see you again soon!");
+        sc.close();
     }
 }

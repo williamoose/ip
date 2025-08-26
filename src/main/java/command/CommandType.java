@@ -16,7 +16,7 @@ public enum CommandType {
         try {
             return CommandType.valueOf(input.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new JobeException("OOPS!!!! I'm Sorry, but I am not sure what you mean.");
+            throw new JobeException("OOPS!!!! I'm Sorry, but I do not recognise the command.");
         }
     }
 }
