@@ -5,6 +5,8 @@ import exception.JobeException;
 import stringutils.StringUtils;
 import task.*;
 
+import java.time.LocalDateTime;
+
 public class Parser {
     
     public static Command parse(String input) throws JobeException {
@@ -40,7 +42,7 @@ public class Parser {
             return new TodoCommand(taskDescription);
         }
         case DEADLINE: {
-            String[] taskDescription = StringUtils.removeFirstWord(splitString).split("/");
+            String[] taskDescription = StringUtils.removeFirstWord(splitString).split("/", 2);
             
             if (taskDescription[0].isBlank()) {
                 throw new JobeException("OOPS!!!! The description of a deadline task cannot be empty!");
