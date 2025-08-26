@@ -8,7 +8,7 @@ import task.*;
 public class Parser {
     
     public static Command parse(String input) throws JobeException {
-        String[] splitString = input.split(" ");
+        String[] splitString = input.split(" ", 2);
         CommandType command = CommandType.stringToCommand(splitString[0]);
         
         switch (command) {
@@ -77,6 +77,13 @@ public class Parser {
             } catch (NumberFormatException e) {
                 throw new JobeException("OOPS!!!! The index must be a number!");
             }
+        case FIND:
+            if (splitString.length < 2 || splitString[1].isBlank()) {
+                throw new JobeException("OOPS!!!! You forgot to enter your keyword!");
+            }
+            
+            String keywords = splitString[1];
+            return new FindCommand(keywords);
         default:
             throw new JobeException("OOPS!!!! I'm Sorry, but I am not sure what you mean.");
         }

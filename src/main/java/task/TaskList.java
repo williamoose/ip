@@ -3,6 +3,7 @@ package task;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TaskList {
     
@@ -27,6 +28,10 @@ public class TaskList {
         this.numOfTasks--;
     }
     
+    public Stream<Task> toStream() {
+        return this.listOfTasks.stream();
+    }
+    
     public String toString() {
         StringBuilder str = new StringBuilder("Here are the tasks in your list:\n");
         int count = 1;
@@ -42,7 +47,7 @@ public class TaskList {
     }
     
     public String convertToFileFormat() {
-        return listOfTasks.stream()
+        return this.toStream()
                 .map(Task::convertToFileFormat)
                 .collect(Collectors.joining("\n"));
     }

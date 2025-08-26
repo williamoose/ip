@@ -10,6 +10,7 @@ public enum CommandType {
     TODO,
     DEADLINE,
     EVENT,
+    FIND,
     DELETE;
     
     public static CommandType stringToCommand(String input) throws JobeException {
