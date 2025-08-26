@@ -1,6 +1,10 @@
 package task;
 
+import dateutils.DateUtils;
+import exception.JobeException;
 import stringutils.StringUtils;
+
+import java.util.Date;
 
 public class EventTask extends Task {
     
@@ -8,10 +12,12 @@ public class EventTask extends Task {
     private String toDate;
     
     // Call this constructor for raw inputs by user
-    public EventTask(String taskDescription, String fromDate, String toDate) {
+    public EventTask(String taskDescription, String fromDate, String toDate) throws JobeException {
         super(taskDescription);
-        this.fromDate = StringUtils.splitStringAndRemoveFirstWord(fromDate);
-        this.toDate = StringUtils.splitStringAndRemoveFirstWord(toDate);
+        String from = StringUtils.splitStringAndRemoveFirstWord(fromDate);
+        String to = StringUtils.splitStringAndRemoveFirstWord(toDate);
+        this.fromDate = DateUtils.convertToDateTime(from);
+        this.toDate = DateUtils.convertToDateTime(to);
     }
     
     // Call this constructor for parsed fromDate and toDate inputs
@@ -28,6 +34,6 @@ public class EventTask extends Task {
     
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(from: " + fromDate + " to: " + toDate + ")";
+        return "[E]" + super.toString() + "(" + fromDate + " -> " + toDate + ")";
     }
 }

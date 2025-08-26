@@ -5,6 +5,8 @@ import exception.JobeException;
 import stringutils.StringUtils;
 import task.*;
 
+import java.time.LocalDateTime;
+
 public class Parser {
     
     public static Command parse(String input) throws JobeException {
@@ -40,7 +42,7 @@ public class Parser {
             return new TodoCommand(taskDescription);
         }
         case DEADLINE: {
-            String[] taskDescription = StringUtils.removeFirstWord(splitString).split("/");
+            String[] taskDescription = StringUtils.removeFirstWord(splitString).split("/", 2);
             
             if (taskDescription[0].isBlank()) {
                 throw new JobeException("OOPS!!!! The description of a deadline task cannot be empty!");
@@ -53,7 +55,7 @@ public class Parser {
             return new DeadlineCommand(taskDescription[0], taskDescription[1]);
         }
         case EVENT: {
-            String[] taskDescription = StringUtils.removeFirstWord(splitString).split("/");
+            String[] taskDescription = StringUtils.removeFirstWord(splitString).split("/", 2);
             
             if (taskDescription[0].isBlank()) {
                 throw new JobeException("OOPS!!!! The description of an event task cannot be empty!");
@@ -63,11 +65,12 @@ public class Parser {
                 throw new JobeException("OOPS!!!! You forgot to specify the START date/time!");
             }
             
-            if (taskDescription.length < 3) {
+            String[] dates = taskDescription[1].split("/to");
+            if (dates.length < 2) {
                 throw new JobeException("OOPS!!!! You forgot to specify the END date/time!");
             }
             
-            return new EventCommand(taskDescription[0], taskDescription[1], taskDescription[2]);
+            return new EventCommand(taskDescription[0], dates[0], dates[1]);
         }
         case DELETE:
             try {

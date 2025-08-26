@@ -14,8 +14,8 @@ import java.util.List;
 
 public class Storage {
     private File file;
-    private static final String TASKS_FILE_PATH_STRING = "./data/jobe.txt";
-    private static final Path TASKS_FILE_PATH = Paths.get(TASKS_FILE_PATH_STRING);
+    public static final String TASKS_FILE_PATH_STRING = "./data/jobe.txt";
+    public static final Path TASKS_FILE_PATH = Paths.get(TASKS_FILE_PATH_STRING);
     
     public Storage(TaskList taskList) {
         this.file = new File(TASKS_FILE_PATH_STRING);
