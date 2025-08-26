@@ -12,5 +12,14 @@ delete 4
 delete 3
 list
 delete 4
+mark 4
+unmark 4
+todo
+deadline
+event
+deadline mark homework
+event project meeting
+event project meeting /from 2pm
+
 hello
 bye
