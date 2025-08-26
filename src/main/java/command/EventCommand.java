@@ -2,7 +2,6 @@ package command;
 
 import exception.JobeException;
 import storage.Storage;
-import task.DeadlineTask;
 import task.EventTask;
 import task.Task;
 import task.TaskList;

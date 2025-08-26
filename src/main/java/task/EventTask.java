@@ -4,8 +4,6 @@ import dateutils.DateUtils;
 import exception.JobeException;
 import stringutils.StringUtils;
 
-import java.util.Date;
-
 public class EventTask extends Task {
     
     private String fromDate;
