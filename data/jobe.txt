@@ -1,0 +1,6 @@
+T / [ ] / read book
+D / [ ] / read book / Aug 26 2025, 11:53
+E / [ ] / project meeting / Aug 27 2025, 13:00 / Aug 27 2025, 14:00
+E / [ ] / project meeting / Aug 26 2025, 14:00 / Aug 26 2025, 15:00
+D / [ ] / read book  / May 22 2025, 15:00
+E / [ ] / read book  / May 25 2025, 12:00 / May 25 2025, 13:00
