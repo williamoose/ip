@@ -2,6 +2,12 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'checkstyle'   // <- add this
+}
+
+checkstyle {
+    toolVersion = '10.12.0'   // optional, pick the version you want
+    configFile = file('config/checkstyle/checkstyle.xml') // optional, your rules
 }
 
 repositories {
@@ -28,7 +34,7 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    mainClass.set("Jobe")
 }
 
 shadowJar {
