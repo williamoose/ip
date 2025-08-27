@@ -1,16 +1,29 @@
 package parser;
 
-import command.*;
+import command.ByeCommand;
+import command.Command;
+import command.CommandType;
+import command.DeadlineCommand;
+import command.DeleteCommand;
+import command.EventCommand;
+import command.FindCommand;
+import command.ListCommand;
+import command.MarkCommand;
+import command.TodoCommand;
+import command.UnmarkCommand;
 import exception.JobeException;
 import stringutils.StringUtils;
-import task.*;
+import task.DeadlineTask;
+import task.EventTask;
+import task.Task;
+import task.TaskType;
+import task.TodoTask;
 
 public class Parser {
     
     public static Command parse(String input) throws JobeException {
         String[] splitString = input.split(" ", 2);
         CommandType command = CommandType.stringToCommand(splitString[0]);
-        
         switch (command) {
         case BYE:
             return new ByeCommand();
@@ -41,33 +54,26 @@ public class Parser {
         }
         case DEADLINE: {
             String[] taskDescription = StringUtils.removeFirstWord(splitString).split("/", 2);
-            
             if (taskDescription[0].isBlank()) {
                 throw new JobeException("OOPS!!!! The description of a deadline task cannot be empty!");
             }
-            
             if (taskDescription.length < 2) {
                 throw new JobeException("OOPS!!!! You forgot to specify the deadline!");
             }
-            
             return new DeadlineCommand(taskDescription[0], taskDescription[1]);
         }
         case EVENT: {
             String[] taskDescription = StringUtils.removeFirstWord(splitString).split("/", 2);
-            
             if (taskDescription[0].isBlank()) {
                 throw new JobeException("OOPS!!!! The description of an event task cannot be empty!");
             }
-            
             if (taskDescription.length < 2) {
                 throw new JobeException("OOPS!!!! You forgot to specify the START date/time!");
             }
-            
             String[] dates = taskDescription[1].split("/to");
             if (dates.length < 2) {
                 throw new JobeException("OOPS!!!! You forgot to specify the END date/time!");
             }
-            
             return new EventCommand(taskDescription[0], dates[0], dates[1]);
         }
         case DELETE:
@@ -81,7 +87,6 @@ public class Parser {
             if (splitString.length < 2 || splitString[1].isBlank()) {
                 throw new JobeException("OOPS!!!! You forgot to enter your keyword!");
             }
-            
             String keywords = splitString[1];
             return new FindCommand(keywords);
         default:
@@ -92,12 +97,11 @@ public class Parser {
     public static Task parseTask(String input) throws JobeException {
         String[] splitString = input.split(" / ");
         TaskType taskType = TaskType.stringToCommand(splitString[0]);
-        
         // if splitString[1] equals to "[X]" means that it has been marked as done
         // and hence isDone is true.
         boolean isDone = splitString[1].equals("[X]");
         String taskDescription = splitString[2];
-        switch(taskType) {
+        switch (taskType) {
         case D:
             String deadline = splitString[3];
             return new DeadlineTask(taskDescription, deadline, isDone);

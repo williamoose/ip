@@ -1,12 +1,12 @@
 package command;
 
+import java.util.List;
+
 import exception.JobeException;
 import storage.Storage;
 import task.Task;
 import task.TaskList;
 import ui.Ui;
-
-import java.util.List;
 
 public class FindCommand extends Command {
     private String keyword;
@@ -18,8 +18,8 @@ public class FindCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
         List<Task> list = taskList.toStream()
-          .filter(task -> task.getTaskDescription().contains(this.keyword))
-          .toList();
+            .filter(task -> task.getTaskDescription().contains(this.keyword))
+            .toList();
         
         if (list.isEmpty()) {
             throw new JobeException("OOPS!!!! There are no matching tasks in your list!");
