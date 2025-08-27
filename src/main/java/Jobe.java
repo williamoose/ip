@@ -1,14 +1,9 @@
 import command.Command;
+import exception.JobeException;
 import parser.Parser;
 import storage.Storage;
-import task.*; // to remove *
+import task.TaskList;
 import ui.Ui;
-import exception.*; // to remove *
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Scanner;
-
 
 public class Jobe {
     private TaskList taskList;
