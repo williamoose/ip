@@ -12,11 +12,22 @@ import parser.Parser;
 import task.Task;
 import task.TaskList;
 
+/**
+ * Storage class for file validation, creation, loading and saving.
+ */
 public class Storage {
     private File file;
     public static final String TASKS_FILE_PATH_STRING = "./data/jobe.txt";
     public static final Path TASKS_FILE_PATH = Paths.get(TASKS_FILE_PATH_STRING);
     
+    /**
+     * Constructor to load tasks into file if file exists.
+     * <p>
+     * Else, if parent directory does not exist, one is created.
+     * Similarly, if file does not exist one is created.
+     *
+     * @param taskList Task list containing user's current tasks.
+     */
     public Storage(TaskList taskList) {
         this.file = new File(TASKS_FILE_PATH_STRING);
         
@@ -44,6 +55,11 @@ public class Storage {
         this.loadTasks(taskList);
     }
     
+    /**
+     * Saves user's task list into a file with the corresponding file path.
+     *
+     * @param taskList Task list containing user's tasks.
+     */
     public void saveTasks(TaskList taskList) {
         try {
             Files.writeString(TASKS_FILE_PATH, taskList.convertToFileFormat());
@@ -52,6 +68,11 @@ public class Storage {
         }
     }
     
+    /**
+     * Loads user's saved tasks from file into task list.
+     *
+     * @param taskList Task list containing user's tasks.
+     */
     public void loadTasks(TaskList taskList) {
         try {
             List<String> lines = Files.readAllLines(TASKS_FILE_PATH);

@@ -5,6 +5,9 @@ import storage.Storage;
 import task.TaskList;
 import ui.Ui;
 
+/**
+ * Main class for the Jobe Application.
+ */
 public class Jobe {
     private TaskList taskList;
     private boolean isExit = false;
@@ -17,6 +20,9 @@ public class Jobe {
         this.storage = new Storage(taskList);
     }
     
+    /**
+     * Runs the main application. Continues reading user inputs until isExit is set to true.
+     */
     public void run() {
         this.ui.sayHello();
         
@@ -39,6 +45,11 @@ public class Jobe {
         }
     }
     
+    /**
+     * Entry point of Jobe application.
+     *
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         Jobe jobe = new Jobe();
         jobe.run();

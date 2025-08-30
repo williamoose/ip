@@ -7,6 +7,9 @@ import task.Task;
 import task.TaskList;
 import ui.Ui;
 
+/**
+ * Represents a command to instruct Jobe to exit when user inputs "deadline".
+ */
 public class DeadlineCommand extends Command {
     private String taskDescription;
     private String deadline;
@@ -16,6 +19,15 @@ public class DeadlineCommand extends Command {
         this.deadline = deadline;
     }
     
+    /**
+     * Creates new deadline task, adds this created task to user's task list,
+     * saves tasks to user's local file and prints confirmation messages to the user.
+     *
+     * @param taskList Current user's task list for new tasks to be added.
+     * @param ui Ui object used to display messages to the user.
+     * @param storage Storage object to save tasks to user's local file.
+     * @throws JobeException If DeadlineTask class throws an exception when new task is created.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
         Task task = new DeadlineTask(this.taskDescription, this.deadline);
@@ -26,6 +38,11 @@ public class DeadlineCommand extends Command {
         System.out.println("Now you have " + taskList.size() + " tasks in the list");
     }
     
+    /**
+     * Sets isExit to false.
+     *
+     * @return boolean false
+     */
     @Override
     public boolean isExit() {
         return false;

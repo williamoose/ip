@@ -8,6 +8,9 @@ import task.Task;
 import task.TaskList;
 import ui.Ui;
 
+/**
+ * Represents a command to instruct Jobe to exit when user inputs "find".
+ */
 public class FindCommand extends Command {
     private String keyword;
     
@@ -15,6 +18,15 @@ public class FindCommand extends Command {
         this.keyword = keyword;
     }
     
+    /**
+     * Takes user's task list and filters out tasks which does not contain the user input.
+     * Then it prints out the remaining tasks.
+     *
+     * @param taskList Current user's task list for new tasks to be added.
+     * @param ui Ui object used to display messages to the user.
+     * @param storage Storage object to save tasks to user's local file.
+     * @throws JobeException If user has no tasks in the task list.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
         List<Task> list = taskList.toStream()
@@ -33,6 +45,11 @@ public class FindCommand extends Command {
         }
     }
     
+    /**
+     * Sets isExit to false.
+     *
+     * @return boolean false.
+     */
     @Override
     public boolean isExit() {
         return false;
