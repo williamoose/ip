@@ -19,8 +19,19 @@ import task.Task;
 import task.TaskType;
 import task.TodoTask;
 
+/**
+ * Parser class to parse user's input into corresponding command classes.
+ */
 public class Parser {
     
+    /**
+     * Parses user's input into corresponding commands listed in CommandType enum.
+     * Calls the corresponding command class with necessary inputs.
+     *
+     * @param input User's entire String input.
+     * @return a Command object corresponding to user's input.
+     * @throws JobeException If individual command classes throws an exception.
+     */
     public static Command parse(String input) throws JobeException {
         String[] splitString = input.split(" ", 2);
         CommandType command = CommandType.stringToCommand(splitString[0]);
@@ -94,6 +105,12 @@ public class Parser {
         }
     }
     
+    /**
+     * Parses input when loading files into corresponding tasks.
+     * @param input Input from file containing user's tasks.
+     * @return a Task object corresponding to input from file.
+     * @throws JobeException If failed to parse tasks.
+     */
     public static Task parseTask(String input) throws JobeException {
         String[] splitString = input.split(" / ");
         TaskType taskType = TaskType.stringToCommand(splitString[0]);

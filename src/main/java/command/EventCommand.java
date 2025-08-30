@@ -7,6 +7,9 @@ import task.Task;
 import task.TaskList;
 import ui.Ui;
 
+/**
+ * Represents a command to instruct Jobe to exit when user inputs "event".
+ */
 public class EventCommand extends Command {
     private String taskDescription;
     private String fromTime;
@@ -18,6 +21,15 @@ public class EventCommand extends Command {
         this.toTime = toTime;
     }
     
+    /**
+     * Creates new event task, adds this created task to user's task list,
+     * saves tasks to user's local file and prints confirmation messages to the user.
+     *
+     * @param taskList Current user's task list for new tasks to be added.
+     * @param ui Ui object used to display messages to the user.
+     * @param storage Storage object to save tasks to user's local file.
+     * @throws JobeException If EventTask class throws an exception when new task is created.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
         Task task = new EventTask(this.taskDescription, this.fromTime, this.toTime);
@@ -28,6 +40,11 @@ public class EventCommand extends Command {
         System.out.println("Now you have " + taskList.size() + " tasks in the list");
     }
     
+    /**
+     * Sets isExit to false.
+     *
+     * @return boolean false.
+     */
     @Override
     public boolean isExit() {
         return false;

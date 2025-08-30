@@ -6,6 +6,9 @@ import java.time.format.DateTimeParseException;
 
 import exception.JobeException;
 
+/**
+ * Utility class for date manipulation functions
+ */
 public class DateUtils {
     
     public static final DateTimeFormatter INPUT_DATE_TIME_FORMATTER = DateTimeFormatter
@@ -13,6 +16,13 @@ public class DateUtils {
     public static final DateTimeFormatter OUTPUT_DATE_TIME_FORMATTER = DateTimeFormatter
             .ofPattern("MMM d yyyy, HH:mm");
     
+    /**
+     * Transforms input date into a pattern specified by OUTPUT_DATE_TIME_FORMATTER.
+     *
+     * @param input Date to be formatted.
+     * @return Date formatted to pattern OUTPUT_DATE_TIME_FORMATTER.
+     * @throws JobeException If date cant be parsed due to incorrect input format.
+     */
     public static String convertToDateTime(String input) throws JobeException {
         try {
             LocalDateTime date = LocalDateTime.parse(input, INPUT_DATE_TIME_FORMATTER);
