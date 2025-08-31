@@ -71,6 +71,7 @@ public class Parser {
             if (taskDescription.length < 2) {
                 throw new JobeException("OOPS!!!! You forgot to specify the deadline!");
             }
+            System.out.println(taskDescription[1]);
             return new DeadlineCommand(taskDescription[0], taskDescription[1]);
         }
         case EVENT: {
