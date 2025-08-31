@@ -21,7 +21,7 @@ public class ListCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
         if (taskList.size() <= 0) {
-                throw new JobeException("OOPS!!!! You have nothing in your list!");
+            throw new JobeException("OOPS!!!! You have nothing in your list!");
         }
         
         System.out.println(taskList.toString());
