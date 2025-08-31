@@ -1,5 +1,8 @@
 package task;
 
+/**
+ * Represents a to do task.
+ */
 public class TodoTask extends Task {
     
     /**
