@@ -14,6 +14,9 @@ public class Jobe {
     private Ui ui;
     private Storage storage;
     
+    /**
+     * Initialises a Jobe object.
+     */
     public Jobe() {
         this.taskList = new TaskList();
         this.ui = new Ui();
