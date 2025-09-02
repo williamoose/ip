@@ -1,0 +1,27 @@
+package jobe.task;
+
+import jobe.exception.JobeException;
+
+/**
+ * Represents the types of tasks stored in files and recognised by jobe.Jobe.
+ */
+public enum TaskType {
+    D,
+    E,
+    T;
+    
+    /**
+     * Returns a jobe.task type which corresponds to the input string.
+     *
+     * @param input Input jobe.task when parsing file.
+     * @return Task type corresponding to user's input.
+     * @throws JobeException if input jobe.task does not match any valid jobe.task types.
+     */
+    public static TaskType stringToCommand(String input) throws JobeException {
+        try {
+            return TaskType.valueOf(input.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new JobeException("OOPS!!!! There is an error with TaskType enums");
+        }
+    }
+}
