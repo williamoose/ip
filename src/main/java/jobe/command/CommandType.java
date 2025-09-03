@@ -3,7 +3,7 @@ package jobe.command;
 import jobe.exception.JobeException;
 
 /**
- * Represents the types of commands recognised by jobe.Jobe.
+ * Represents the types of commands recognised by Jobe.
  */
 public enum CommandType {
     BYE,

@@ -56,7 +56,7 @@ public class Storage {
     }
     
     /**
-     * Saves user's jobe.task list into a file with the corresponding file path.
+     * Saves user's task list into a file with the corresponding file path.
      *
      * @param taskList Task list containing user's tasks.
      */
@@ -69,7 +69,7 @@ public class Storage {
     }
     
     /**
-     * Loads user's saved tasks from file into jobe.task list.
+     * Loads user's saved tasks from file into task list.
      *
      * @param taskList Task list containing user's tasks.
      */

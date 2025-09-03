@@ -1,14 +1,14 @@
 package jobe.task;
 
 /**
- * Represents a to do jobe.task.
+ * Represents a to do task.
  */
 public class TodoTask extends Task {
     
     /**
      * Call this constructor for raw inputs from the user.
      *
-     * @param taskDescription String description of a jobe.task.
+     * @param taskDescription String description of a task.
      */
     public TodoTask(String taskDescription) {
         super(taskDescription);
@@ -17,8 +17,8 @@ public class TodoTask extends Task {
     /**
      * Call this constructor when reading inputs from saved file.
      *
-     * @param taskDescription String description of jobe.task.
-     * @param isDone Boolean to represent whether a jobe.task is completed.
+     * @param taskDescription String description of task.
+     * @param isDone Boolean to represent whether a task is completed.
      */
     public TodoTask(String taskDescription, boolean isDone) {
         super(taskDescription, isDone);

@@ -5,7 +5,7 @@ import jobe.exception.JobeException;
 import jobe.stringutils.StringUtils;
 
 /**
- * Represents an event jobe.task.
+ * Represents an event task.
  */
 public class EventTask extends Task {
     
@@ -15,7 +15,7 @@ public class EventTask extends Task {
     /**
      * Call this constructor for raw inputs from the user.
      *
-     * @param taskDescription String description of jobe.task.
+     * @param taskDescription String description of task.
      * @param fromDate Start date/time of event.
      * @param toDate End date/time of event.
      * @throws JobeException If formatting of start or end date/time fails.
@@ -31,10 +31,10 @@ public class EventTask extends Task {
     /**
      * Call this constructor when reading inputs from saved files.
      *
-     * @param taskDescription String description of jobe.task.
+     * @param taskDescription String description of task.
      * @param fromDate Start date/time of event.
      * @param toDate End date/time of event.
-     * @param isDone Boolean to represent whether a jobe.task is completed.
+     * @param isDone Boolean to represent whether a task is completed.
      */
     public EventTask(String taskDescription, String fromDate, String toDate, boolean isDone) {
         super(taskDescription, isDone);

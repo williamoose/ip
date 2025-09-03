@@ -8,7 +8,7 @@ import jobe.task.TaskList;
 import jobe.ui.Ui;
 
 /**
- * Represents a command to instruct jobe.Jobe to exit when user inputs "event".
+ * Represents a command to instruct Jobe to exit when user inputs "event".
  */
 public class EventCommand extends Command {
     private String taskDescription;
@@ -18,7 +18,7 @@ public class EventCommand extends Command {
     /**
      * Initialises a new EventCommand object.
      *
-     * @param taskDescription String description of jobe.task.
+     * @param taskDescription String description of task.
      * @param fromTime Start date/time of event.
      * @param toTime End date/time of event.
      */
@@ -29,20 +29,20 @@ public class EventCommand extends Command {
     }
     
     /**
-     * Creates new event jobe.task, adds this created jobe.task to user's jobe.task list,
+     * Creates new event task, adds this created task to user's task list,
      * saves tasks to user's local file and prints confirmation messages to the user.
      *
-     * @param taskList Current user's jobe.task list for new tasks to be added.
+     * @param taskList Current user's task list for new tasks to be added.
      * @param ui Ui object used to display messages to the user.
      * @param storage Storage object to save tasks to user's local file.
-     * @throws JobeException If EventTask class throws an exception when new jobe.task is created.
+     * @throws JobeException If EventTask class throws an exception when new task is created.
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
         Task task = new EventTask(this.taskDescription, this.fromTime, this.toTime);
         taskList.addTask(task);
         storage.saveTasks(taskList);
-        System.out.println("Got it. I've added this jobe.task:");
+        System.out.println("Got it. I've added this task:");
         System.out.println(task.toString());
         System.out.println("Now you have " + taskList.size() + " tasks in the list");
     }

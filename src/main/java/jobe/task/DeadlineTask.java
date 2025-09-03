@@ -5,7 +5,7 @@ import jobe.exception.JobeException;
 import jobe.stringutils.StringUtils;
 
 /**
- * Represents a deadline jobe.task.
+ * Represents a deadline task.
  */
 public class DeadlineTask extends Task {
     
@@ -14,8 +14,8 @@ public class DeadlineTask extends Task {
     /**
      * Call this constructor for raw inputs from the user.
      *
-     * @param taskDescription String description of jobe.task.
-     * @param deadline Deadline of jobe.task.
+     * @param taskDescription String description of task.
+     * @param deadline Deadline of task.
      * @throws JobeException If formatting of date fails.
      */
     public DeadlineTask(String taskDescription, String deadline) throws JobeException {
@@ -27,9 +27,9 @@ public class DeadlineTask extends Task {
     /**
      * Call this constructor when reading inputs from saved file.
      *
-     * @param taskDescription String description of jobe.task.
-     * @param deadline Deadline of jobe.task.
-     * @param isDone Boolean representing whether a jobe.task is complete.
+     * @param taskDescription String description of task.
+     * @param deadline Deadline of task.
+     * @param isDone Boolean representing whether a task is complete.
      */
     public DeadlineTask(String taskDescription, String deadline, boolean isDone) {
         super(taskDescription, isDone);

@@ -1,7 +1,7 @@
 package jobe.exception;
 
 /**
- * General exception class for jobe.Jobe.
+ * General exception class for Jobe.
  */
 public class JobeException extends Exception {
     

@@ -7,7 +7,7 @@ import jobe.task.TodoTask;
 import jobe.ui.Ui;
 
 /**
- * Represents a command to instruct jobe.Jobe to exit when user inputs "todo".
+ * Represents a command to instruct Jobe to exit when user inputs "todo".
  */
 public class TodoCommand extends Command {
     private String taskDescription;
@@ -17,10 +17,10 @@ public class TodoCommand extends Command {
     }
     
     /**
-     * Creates new to do jobe.task, adds this created jobe.task to tasklist,
+     * Creates new to do task, adds this created task to tasklist,
      * saves tasks to user's local file and prints confirmation messages to the user.
      *
-     * @param taskList Current user's jobe.task list for new tasks to be added.
+     * @param taskList Current user's task list for new tasks to be added.
      * @param ui Ui object used to display messages to the user.
      * @param storage Storage object to save tasks to user's local file.
      */
@@ -29,7 +29,7 @@ public class TodoCommand extends Command {
         Task task = new TodoTask(this.taskDescription);
         taskList.addTask(task);
         storage.saveTasks(taskList);
-        System.out.println("Got it. I've added this jobe.task:");
+        System.out.println("Got it. I've added this task:");
         System.out.println(task.toString());
         System.out.println("Now you have " + taskList.size() + " tasks in the list");
     }

@@ -3,7 +3,7 @@ package jobe.task;
 import jobe.exception.JobeException;
 
 /**
- * Represents the types of tasks stored in files and recognised by jobe.Jobe.
+ * Represents the types of tasks stored in files and recognised by Jobe.
  */
 public enum TaskType {
     D,
@@ -11,11 +11,11 @@ public enum TaskType {
     T;
     
     /**
-     * Returns a jobe.task type which corresponds to the input string.
+     * Returns a task type which corresponds to the input string.
      *
-     * @param input Input jobe.task when parsing file.
+     * @param input Input task when parsing file.
      * @return Task type corresponding to user's input.
-     * @throws JobeException if input jobe.task does not match any valid jobe.task types.
+     * @throws JobeException if input task does not match any valid task types.
      */
     public static TaskType stringToCommand(String input) throws JobeException {
         try {

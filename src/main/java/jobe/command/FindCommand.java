@@ -9,7 +9,7 @@ import jobe.task.TaskList;
 import jobe.ui.Ui;
 
 /**
- * Represents a command to instruct jobe.Jobe to exit when user inputs "find".
+ * Represents a command to instruct Jobe to exit when user inputs "find".
  */
 public class FindCommand extends Command {
     private String keyword;
@@ -19,13 +19,13 @@ public class FindCommand extends Command {
     }
     
     /**
-     * Takes user's jobe.task list and filters out tasks which does not contain the user input.
+     * Takes user's task list and filters out tasks which does not contain the user input.
      * Then it prints out the remaining tasks.
      *
-     * @param taskList Current user's jobe.task list for new tasks to be added.
+     * @param taskList Current user's task list for new tasks to be added.
      * @param ui Ui object used to display messages to the user.
      * @param storage Storage object to save tasks to user's local file.
-     * @throws JobeException If user has no tasks in the jobe.task list.
+     * @throws JobeException If user has no tasks in the task list.
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {

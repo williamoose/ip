@@ -1,7 +1,7 @@
 package jobe.task;
 
 /**
- * Represents one singular jobe.task.
+ * Represents one singular task.
  */
 public class Task {
     private boolean isDone;
@@ -10,7 +10,7 @@ public class Task {
     /**
      * Constructor if tasks isDone status is set to default which is false.
      *
-     * @param taskDescription String description of jobe.task.
+     * @param taskDescription String description of task.
      */
     public Task(String taskDescription) {
         this.isDone = false;
@@ -20,8 +20,8 @@ public class Task {
     /**
      * Constructor if tasks isDone status needs to be manually set.
      *
-     * @param taskDescription String description of jobe.task.
-     * @param isDone Boolean to represent whether a jobe.task is done.
+     * @param taskDescription String description of task.
+     * @param isDone Boolean to represent whether a task is done.
      */
     public Task(String taskDescription, boolean isDone) {
         this.isDone = isDone;
@@ -37,9 +37,9 @@ public class Task {
     }
     
     /**
-     * Prints the status of the jobe.task depending on whether it is done.
+     * Prints the status of the task depending on whether it is done.
      *
-     * @return String representation of jobe.task's done status.
+     * @return String representation of task's done status.
      */
     public String printStatus() {
         return isDone ? "[X]" : "[ ]";
@@ -50,9 +50,9 @@ public class Task {
     }
     
     /**
-     * Converts the jobe.task into a savable format.
+     * Converts the task into a savable format.
      *
-     * @return a String representation of the jobe.task to be saved to a file.
+     * @return a String representation of the task to be saved to a file.
      */
     public String convertToFileFormat() {
         String completionStatus = isDone ? "[X]" : "[ ]";

@@ -108,6 +108,7 @@ public class Parser {
     
     /**
      * Parses input when loading files into corresponding tasks.
+     *
      * @param input Input from file containing user's tasks.
      * @return a Task object corresponding to input from file.
      * @throws JobeException If failed to parse tasks.

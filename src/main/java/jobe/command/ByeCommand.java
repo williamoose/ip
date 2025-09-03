@@ -5,14 +5,14 @@ import jobe.task.TaskList;
 import jobe.ui.Ui;
 
 /**
- * Represents a command to instruct jobe.Jobe to exit when user inputs "bye".
+ * Represents a command to instruct Jobe to exit when user inputs "bye".
  */
 public class ByeCommand extends Command {
     
     /**
      * Executes ByeCommand. Calls Ui class to display goodbye message to user.
      *
-     * @param taskList Current user's jobe.task list for new tasks to be added.
+     * @param taskList Current user's task list for new tasks to be added.
      * @param ui Ui object used to display messages to the user.
      * @param storage Storage object to save tasks to user's local file.
      */

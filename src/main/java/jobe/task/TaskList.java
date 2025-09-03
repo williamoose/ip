@@ -18,7 +18,7 @@ public class TaskList {
     }
     
     /**
-     * Adds the input jobe.task into the list of tasks. Increments the total number of tasks.
+     * Adds the input task into the list of tasks. Increments the total number of tasks.
      *
      * @param task A Task object.
      */
@@ -32,9 +32,9 @@ public class TaskList {
     }
     
     /**
-     * Removes the input jobe.task from the list of tasks. Decrements the total number of tasks.
+     * Removes the input task from the list of tasks. Decrements the total number of tasks.
      *
-     * @param index index corresponding to the jobe.task object.
+     * @param index index corresponding to the task object.
      */
     public void removeTask(int index) {
         this.listOfTasks.remove(index);
@@ -42,7 +42,7 @@ public class TaskList {
     }
     
     /**
-     * Converts jobe.task into stream format.
+     * Converts task into stream format.
      *
      * @return A stream containing Task objects.
      */
@@ -71,7 +71,7 @@ public class TaskList {
     }
     
     /**
-     * Converts jobe.task list and individual files into a savable format for saving to a file.
+     * Converts task list and individual files into a savable format for saving to a file.
      *
      * @return a String representation of all tasks.
      */

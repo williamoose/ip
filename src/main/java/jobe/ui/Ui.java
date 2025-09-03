@@ -13,10 +13,10 @@ public class Ui {
     }
     
     /**
-     * Prints out messages to greet the user upon launching jobe.Jobe.
+     * Prints out messages to greet the user upon launching Jobe.
      */
     public void sayHello() {
-        System.out.println("\n" + "Hello! I'm jobe.Jobe.");
+        System.out.println("\n" + "Hello! I'm Jobe.");
         System.out.println("What can I do for you?");
     }
     
@@ -30,7 +30,7 @@ public class Ui {
     }
     
     /**
-     * Prints out messages to say bye to user upon exiting jobe.Jobe.
+     * Prints out messages to say bye to user upon exiting Jobe.
      */
     public void sayBye() {
         System.out.println("Bye. Hope to see you again soon!");

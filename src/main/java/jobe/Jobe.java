@@ -8,7 +8,7 @@ import jobe.task.TaskList;
 import jobe.ui.Ui;
 
 /**
- * Main class for the jobe.Jobe Application.
+ * Main class for the Jobe Application.
  */
 public class Jobe {
     private TaskList taskList;
@@ -17,7 +17,7 @@ public class Jobe {
     private Storage storage;
     
     /**
-     * Initialises a jobe.Jobe object.
+     * Initialises a Jobe object.
      */
     public Jobe() {
         this.taskList = new TaskList();
@@ -61,7 +61,7 @@ public class Jobe {
     }
     
     /**
-     * Entry point of jobe.Jobe application.
+     * Entry point of the Jobe application.
      *
      * @param args Command line arguments.
      */
