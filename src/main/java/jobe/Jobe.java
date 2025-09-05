@@ -51,6 +51,12 @@ public class Jobe {
         }
     }
     
+    /**
+     * Gets response to user input for Jobe to display.
+     *
+     * @param input User's input.
+     * @return Jobe's response.
+     */
     public String getResponse(String input) {
         try {
             if (input.isBlank()) {
