@@ -26,14 +26,15 @@ public class Jobe {
     }
     
     /**
+     * @deprecated Method is part of the old CLI version.
      * Runs the main application. Continues reading user inputs until isExit is set to true.
      */
-    public void run() {
-        this.ui.sayHello();
+    @Deprecated
+    public void run(String input) {
+        this.ui.showHelloResponse();
         
         while (!this.isExit) {
             try {
-                String input = this.ui.readMessage();
                 
                 if (input.isBlank()) {
                     throw new JobeException("OOPS!!!! You forgot to type something!");
@@ -50,14 +51,20 @@ public class Jobe {
         }
     }
     
-    /**
-     * Generates a response for the user's chat message.
-     *
-     * @param input user's input.
-     * @return String representation of response.
-     */
     public String getResponse(String input) {
-        return "Jobe heard: " + input;
+        try {
+            if (input.isBlank()) {
+                throw new JobeException("OOPS!!!! You forgot to type something!");
+            }
+            
+            Command c = Parser.parse(input);
+            c.execute(this.taskList, this.ui, this.storage);
+            return this.ui.getResponse();
+        } catch (JobeException e) {
+            return e.getMessage();
+        } catch (Exception e) {
+            return e.getMessage() + " Try again later!";
+        }
     }
     
     /**
@@ -67,6 +74,5 @@ public class Jobe {
      */
     public static void main(String[] args) {
         Jobe jobe = new Jobe();
-        jobe.run();
     }
 }

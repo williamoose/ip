@@ -6,7 +6,6 @@ import jobe.exception.JobeException;
  * Represents the types of commands recognised by Jobe.
  */
 public enum CommandType {
-    BYE,
     LIST,
     MARK,
     UNMARK,

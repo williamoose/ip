@@ -37,12 +37,7 @@ public class FindCommand extends Command {
             throw new JobeException("OOPS!!!! There are no matching tasks in your list!");
         }
         
-        int count = 1;
-        System.out.println("Here are the matching tasks in your list:");
-        for (Task task: list) {
-            System.out.println(count + ". " + task.toString());
-            count += 1;
-        }
+        ui.showFindResponse(list);
     }
     
     /**

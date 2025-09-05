@@ -5,8 +5,10 @@ import jobe.task.TaskList;
 import jobe.ui.Ui;
 
 /**
+ * @deprecated Class belongs to old CLI version.
  * Represents a command to instruct Jobe to exit when user inputs "bye".
  */
+@Deprecated
 public class ByeCommand extends Command {
     
     /**

@@ -36,8 +36,6 @@ public class Parser {
         String[] splitString = input.split(" ", 2);
         CommandType command = CommandType.stringToCommand(splitString[0]);
         switch (command) {
-        case BYE:
-            return new ByeCommand();
         case LIST:
             return new ListCommand();
         case MARK:

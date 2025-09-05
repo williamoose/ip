@@ -24,7 +24,7 @@ public class ListCommand extends Command {
             throw new JobeException("OOPS!!!! You have nothing in your list!");
         }
         
-        System.out.println(taskList.toString());
+        ui.showListResponse(taskList);
     }
     
     /**

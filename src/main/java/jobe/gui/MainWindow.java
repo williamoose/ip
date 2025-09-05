@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import jobe.Jobe;
+import jobe.ui.Ui;
 
 /**
  * Controller for the main GUI.
@@ -23,15 +24,18 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
     
     private Jobe jobe;
+    private Ui ui;
     
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/penguin.jpg"));
     private Image jobeImage = new Image(this.getClass().getResourceAsStream("/images/jobe.jpg"));
     
     @FXML
     public void initialize() {
+        this.ui = new Ui();
+        this.ui.showHelloResponse();
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(
-                DialogBox.getJobeDialog("Hello! My name is Jobe! How can I help you!", jobeImage)
+                DialogBox.getJobeDialog(this.ui.getResponse(), jobeImage)
         );
     }
     

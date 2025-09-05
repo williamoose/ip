@@ -42,9 +42,7 @@ public class EventCommand extends Command {
         Task task = new EventTask(this.taskDescription, this.fromTime, this.toTime);
         taskList.addTask(task);
         storage.saveTasks(taskList);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task.toString());
-        System.out.println("Now you have " + taskList.size() + " tasks in the list");
+        ui.showEventResponse(task, taskList);
     }
     
     /**

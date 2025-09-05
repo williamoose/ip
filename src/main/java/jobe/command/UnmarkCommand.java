@@ -2,6 +2,7 @@ package jobe.command;
 
 import jobe.exception.JobeException;
 import jobe.storage.Storage;
+import jobe.task.Task;
 import jobe.task.TaskList;
 import jobe.ui.Ui;
 
@@ -30,10 +31,10 @@ public class UnmarkCommand extends Command {
             throw new JobeException("OOPS!!!! You are trying to unmark a task which does not exist!");
         }
         
-        taskList.getTask(this.index).setUndone();
+        Task task = taskList.getTask(this.index);
+        task.setUndone();
         storage.saveTasks(taskList);
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(taskList.getTask(this.index));
+        ui.showUnmarkResponse(task);
     }
     
     /**

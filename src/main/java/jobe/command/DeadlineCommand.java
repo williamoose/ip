@@ -39,9 +39,7 @@ public class DeadlineCommand extends Command {
         Task task = new DeadlineTask(this.taskDescription, this.deadline);
         taskList.addTask(task);
         storage.saveTasks(taskList);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task.toString());
-        System.out.println("Now you have " + taskList.size() + " tasks in the list");
+        ui.showDeadlineResponse(task, taskList);
     }
     
     /**

@@ -50,6 +50,7 @@ test {
 
 application {
     mainClass.set("jobe/gui/Launcher")
+    //mainClass.set("jobe/Jobe")
 }
 
 shadowJar {

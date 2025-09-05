@@ -2,6 +2,7 @@ package jobe.command;
 
 import jobe.exception.JobeException;
 import jobe.storage.Storage;
+import jobe.task.Task;
 import jobe.task.TaskList;
 import jobe.ui.Ui;
 
@@ -30,10 +31,10 @@ public class MarkCommand extends Command {
             throw new JobeException("OOPS!!!! You are trying to mark a task which does not exist!");
         }
         
-        taskList.getTask(this.index).setDone();
+        Task task = taskList.getTask(this.index);
+        task.setDone();
         storage.saveTasks(taskList);
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(taskList.getTask(this.index));
+        ui.showMarkResponse(task);
     }
     
     /**
