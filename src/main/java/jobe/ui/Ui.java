@@ -18,12 +18,18 @@ public class Ui {
     }
     
     /**
-     * Prints out messages to greet the user upon launching Jobe.
+     * Sets response to welcome greetings for the user upon launching Jobe.
      */
     public void showHelloResponse() {
         this.response = "Hello! I'm Jobe. What can I do for you?";
     }
     
+    /**
+     * Sets response to confirmation messages for a deadline command.
+     *
+     * @param newTask New deadline task to be created.
+     * @param taskList User's task list.
+     */
     public void showDeadlineResponse(Task newTask, TaskList taskList) {
         this.response = "Got it. I've added this task:\n"
                 + newTask.toString()
@@ -31,13 +37,25 @@ public class Ui {
                 + "Now you have " + taskList.size() + " tasks in the list";
     }
     
-    public void showDeleteResponse(Task newTask, TaskList taskList) {
+    /**
+     * Sets response to confirmation messages for a delete command.
+     *
+     * @param deletedTask Task to be deleted.
+     * @param taskList User's task list.
+     */
+    public void showDeleteResponse(Task deletedTask, TaskList taskList) {
         this.response = "Noted. I've removed this task:\n"
-                + newTask.toString()
+                + deletedTask.toString()
                 + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list";
     }
     
+    /**
+     * Sets response to confirmation messages for an event command.
+     *
+     * @param newTask New event task to be created.
+     * @param taskList User's task list.
+     */
     public void showEventResponse(Task newTask, TaskList taskList) {
         this.response = "Got it. I've added this task:\n"
                 + newTask.toString()
@@ -45,6 +63,11 @@ public class Ui {
                 + "Now you have " + taskList.size() + " tasks in the list";
     }
     
+    /**
+     * Sets response to confirmation messages for a find command.
+     *
+     * @param taskList User's task list.
+     */
     public void showFindResponse(List<Task> taskList) {
         int count = 1;
         StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
@@ -55,14 +78,29 @@ public class Ui {
         this.response = sb.toString();
     }
     
+    /**
+     * Sets response to confirmation messages for a list command.
+     *
+     * @param taskList User's task list.
+     */
     public void showListResponse(TaskList taskList) {
         this.response = taskList.toString();
     }
     
+    /**
+     * Sets response to confirmation messages for a mark command.
+     *
+     * @param task Task to be marked.
+     */
     public void showMarkResponse(Task task) {
         this.response = "Nice! I've marked this task as done:\n" + task;
     }
     
+    /**
+     * Sets response to confirmation messages for a to do command.
+     * @param newTask New to do task to be created.
+     * @param taskList User's task list.
+     */
     public void showTodoResponse(Task newTask, TaskList taskList) {
         this.response = "Got it. I've added this task:\n"
                 + newTask.toString()
@@ -70,8 +108,22 @@ public class Ui {
                 + "Now you have " + taskList.size() + " tasks in the list";
     }
     
+    /**
+     * Sets response to confirmation messages for a unmark command
+     *
+     * @param task Task to be unmarked.
+     */
     public void showUnmarkResponse(Task task) {
         this.response =  "OK, I've marked this task as not done yet:" + task;
+    }
+    
+    /**
+     * Get response for Jobe to display.
+     *
+     * @return response.
+     */
+    public String getResponse() {
+        return this.response;
     }
     
     /**
@@ -92,9 +144,5 @@ public class Ui {
     public void sayBye() {
         System.out.println("Bye. Hope to see you again soon!");
         sc.close();
-    }
-    
-    public String getResponse() {
-        return this.response;
     }
 }

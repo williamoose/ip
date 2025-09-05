@@ -56,7 +56,7 @@ public class Parser {
             String taskDescription = StringUtils.removeFirstWord(splitString);
             
             if (taskDescription.isBlank()) {
-                throw new JobeException("OOPS!!!! The description of a todo cannot be empty!");
+                throw new JobeException("OOPS!!!! The description of a todo task cannot be empty!");
             }
             
             return new TodoCommand(taskDescription);
@@ -64,7 +64,7 @@ public class Parser {
         case DEADLINE: {
             String[] taskDescription = StringUtils.removeFirstWord(splitString).split("/", 2);
             if (taskDescription[0].isBlank()) {
-                throw new JobeException("OOPS!!!! The description of a deadline jobe.task cannot be empty!");
+                throw new JobeException("OOPS!!!! The description of a deadline task cannot be empty!");
             }
             if (taskDescription.length < 2) {
                 throw new JobeException("OOPS!!!! You forgot to specify the deadline!");
@@ -75,7 +75,7 @@ public class Parser {
         case EVENT: {
             String[] taskDescription = StringUtils.removeFirstWord(splitString).split("/", 2);
             if (taskDescription[0].isBlank()) {
-                throw new JobeException("OOPS!!!! The description of an event jobe.task cannot be empty!");
+                throw new JobeException("OOPS!!!! The description of an event task cannot be empty!");
             }
             if (taskDescription.length < 2) {
                 throw new JobeException("OOPS!!!! You forgot to specify the START date/time!");
