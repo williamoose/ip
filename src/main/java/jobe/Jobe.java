@@ -26,32 +26,6 @@ public class Jobe {
     }
     
     /**
-     * @deprecated Method is part of the old CLI version.
-     * Runs the main application. Continues reading user inputs until isExit is set to true.
-     */
-    @Deprecated
-    public void run(String input) {
-        this.ui.showHelloResponse();
-        
-        while (!this.isExit) {
-            try {
-                
-                if (input.isBlank()) {
-                    throw new JobeException("OOPS!!!! You forgot to type something!");
-                }
-                
-                Command c = Parser.parse(input);
-                c.execute(this.taskList, this.ui, this.storage);
-                this.isExit = c.isExit();
-            } catch (JobeException e) {
-                System.out.println(e.getMessage());
-            } catch (Exception e) {
-                System.out.println(e.getMessage() + " Try again later!");
-            }
-        }
-    }
-    
-    /**
      * Gets response to user input for Jobe to display.
      *
      * @param input User's input.

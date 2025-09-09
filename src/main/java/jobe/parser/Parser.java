@@ -1,6 +1,5 @@
 package jobe.parser;
 
-import jobe.command.ByeCommand;
 import jobe.command.Command;
 import jobe.command.CommandType;
 import jobe.command.DeadlineCommand;
