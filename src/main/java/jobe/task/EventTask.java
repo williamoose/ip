@@ -13,38 +13,33 @@ public class EventTask extends Task {
     private String endDate;
     
     /**
-     * Call this constructor for raw inputs from the user.
+     * Creates an EventTask with the formatted arguments.
      *
      * @param taskDescription String description of task.
      * @param startDate Start date/time of event.
      * @param endDate End date/time of event.
+     * @return A EventTask object with the corresponding formatted arguments.
      * @throws JobeException If formatting of start or end date/time fails.
      */
-    public EventTask(String taskDescription, String startDate, String endDate) throws JobeException {
-        super(taskDescription);
-        String from = StringUtils.splitStringAndRemoveFirstWord(startDate);
-        String to = StringUtils.splitStringAndRemoveFirstWord(endDate);
-        this.startDate = DateUtils.convertToDateTime(from);
-        this.endDate = DateUtils.convertToDateTime(to);
+    public static EventTask createEventTask(String taskDescription, String startDate, String endDate) throws JobeException {
+        String startDateString = StringUtils.splitStringAndRemoveFirstWord(startDate);
+        String endDateString = StringUtils.splitStringAndRemoveFirstWord(endDate);
         
-        String start = StringUtils.splitStringAndRemoveFirstWord(startDate);
-        String end = StringUtils.splitStringAndRemoveFirstWord(endDate);
+        String formattedStartDate = DateUtils.convertToDateTime(startDateString);
+        String formattedEndDate = DateUtils.convertToDateTime(endDateString);
         
-        this.startDate = DateUtils.convertToDateTime(start);
-        this.endDate = DateUtils.convertToDateTime(end);
-        
-        assert startDate != null : "Start date should never be null";
-        assert endDate != null : "End date should never be null";
+        assert formattedStartDate != null : "Start date should never be null";
+        assert formattedEndDate != null : "End date should never be null";
+        return new EventTask(taskDescription, formattedStartDate, formattedEndDate);
     }
     
-    /**
-     * Call this constructor when reading inputs from saved files.
-     *
-     * @param taskDescription String description of task.
-     * @param startDate Start date/time of event.
-     * @param endDate End date/time of event.
-     * @param isDone Boolean to represent whether a task is completed.
-     */
+    public EventTask(String taskDescription, String startDate, String endDate) throws JobeException {
+        super(taskDescription);
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+    
+    
     public EventTask(String taskDescription, String startDate, String endDate, boolean isDone) {
         super(taskDescription, isDone);
         this.startDate = startDate;

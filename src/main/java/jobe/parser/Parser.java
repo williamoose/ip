@@ -31,9 +31,11 @@ public class Parser {
      * @throws JobeException If individual command classes throws an exception.
      */
     public static Command parse(String input) throws JobeException {
+        assert input != null : "Input should never be null";
+        assert !input.isBlank() : "Input should never be blank";
         String[] splitString = input.split(" ", 2);
-        CommandType command = CommandType.stringToCommand(splitString[0]);
         
+        CommandType command = CommandType.stringToCommand(splitString[0]);
         assert command != null : "Command type should never be null";
         
         String args = splitString.length > 1 ? splitString[1] : "";
@@ -48,9 +50,9 @@ public class Parser {
         case TODO:
             return new TodoCommand(args);
         case DEADLINE:
-            return new DeadlineCommand(args);
+            return DeadlineCommand.createDeadlineCommand(args);
         case EVENT:
-            return new EventCommand(args);
+            return EventCommand.createEventCommand(args);
         case DELETE:
             return new DeleteCommand(args);
         case FIND:
@@ -68,25 +70,36 @@ public class Parser {
      * @throws JobeException If failed to parse tasks.
      */
     public static Task parseTask(String input) throws JobeException {
-        String[] splitString = input.split(" / ");
+        String[] splitString = splitTask(input);
+        
         TaskType taskType = TaskType.stringToCommand(splitString[0]);
-        // if splitString[1] equals to "[X]" means that it has been marked as done
-        // and hence isDone is true.
         boolean isDone = splitString[1].equals("[X]");
         String taskDescription = splitString[2];
+        
         switch (taskType) {
         case D:
-            String deadline = splitString[3];
-            return new DeadlineTask(taskDescription, deadline, isDone);
+            return new DeadlineTask(taskDescription, splitString[3], isDone);
         case E:
-            String startDate = splitString[3];
-            String endDate = splitString[4];
-            return new EventTask(taskDescription, startDate, endDate, isDone);
+            return new EventTask(taskDescription, splitString[3], splitString[4], isDone);
         case T:
             return new TodoTask(taskDescription, isDone);
         default:
             throw new JobeException("OOPS!!!! Task parsing failed");
         }
+    }
+    
+    private static String[] splitTask(String input) throws JobeException {
+        if (input == null || input.isBlank()) {
+            throw new JobeException("OOPS!!!! Missing or invalid file input!");
+        }
+        
+        String[] splitString = input.split(" / ");
+        
+        if (splitString.length < 3) {
+            throw new JobeException("OOPS!!!! File input is incomplete or corrupted!");
+        }
+        
+        return splitString;
     }
 }
 

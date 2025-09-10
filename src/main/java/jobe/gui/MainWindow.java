@@ -55,4 +55,16 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
     }
+    
+    public void showStartupMessages() {
+        String storageMessages = jobe.getStorage().getStatusMessages();
+        
+        if (storageMessages.isBlank()) {
+            return;
+        }
+        
+        dialogContainer.getChildren().add(
+          DialogBox.getJobeDialog(storageMessages, jobeImage)
+        );
+    }
 }

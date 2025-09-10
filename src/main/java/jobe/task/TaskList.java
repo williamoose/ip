@@ -74,7 +74,7 @@ public class TaskList {
      * @throws JobeException If user entered the deadline in the wrong date/time format.
      */
     public Task createDeadlineTask(String taskDescription, String deadline) throws JobeException {
-        Task task = new DeadlineTask(taskDescription, deadline);
+        Task task = DeadlineTask.createDeadlineTask(taskDescription, deadline);
         this.addTask(task);
         return task;
     }
@@ -89,7 +89,7 @@ public class TaskList {
      * @throws JobeException if user entered the start/end date/time in the wrong date/time format.
      */
     public Task createEventTask(String taskDescription, String startDate, String endDate) throws JobeException {
-        Task task = new EventTask(taskDescription, startDate, endDate);
+        Task task = EventTask.createEventTask(taskDescription, startDate, endDate);
         this.addTask(task);
         return task;
     }

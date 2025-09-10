@@ -12,28 +12,27 @@ public class DeadlineTask extends Task {
     private String deadline;
     
     /**
-     * Call this constructor for raw inputs from the user.
+     * Creates a DeadlineTask object with formatted arguments.
      *
      * @param taskDescription String description of task.
      * @param deadline Deadline of task.
+     * @return A DeadlineTask with the corresponding formatted arguments.
      * @throws JobeException If formatting of date fails.
      */
-    public DeadlineTask(String taskDescription, String deadline) throws JobeException {
-        super(taskDescription);
-        
+    public static DeadlineTask createDeadlineTask(String taskDescription, String deadline) throws JobeException {
         String removedFirstWord = StringUtils.splitStringAndRemoveFirstWord(deadline);
         
-        this.deadline = DateUtils.convertToDateTime(removedFirstWord);
-        assert this.deadline != null : "Deadline should never be null";
+        String formattedDeadline = DateUtils.convertToDateTime(removedFirstWord);
+        assert formattedDeadline != null : "Deadline should never be null";
+        
+        return new DeadlineTask(taskDescription, formattedDeadline);
     }
     
-    /**
-     * Call this constructor when reading inputs from saved file.
-     *
-     * @param taskDescription String description of task.
-     * @param deadline Deadline of task.
-     * @param isDone Boolean representing whether a task is complete.
-     */
+    public DeadlineTask(String taskDescription, String deadline) throws JobeException {
+        super(taskDescription);
+        this.deadline = deadline;
+    }
+    
     public DeadlineTask(String taskDescription, String deadline, boolean isDone) {
         super(taskDescription, isDone);
         this.deadline = deadline;

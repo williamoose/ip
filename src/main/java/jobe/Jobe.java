@@ -50,6 +50,10 @@ public class Jobe {
         }
     }
     
+    public Storage getStorage() {
+        return this.storage;
+    }
+    
     /**
      * Entry point of the Jobe application.
      *
