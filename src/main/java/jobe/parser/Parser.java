@@ -33,13 +33,11 @@ public class Parser {
     public static Command parse(String input) throws JobeException {
         String[] splitString = input.split(" ", 2);
         CommandType command = CommandType.stringToCommand(splitString[0]);
-<<<<<<< Updated upstream
-=======
+        
         assert command != null : "Command type should never be null";
         
         String args = splitString.length > 1 ? splitString[1] : "";
         
->>>>>>> Stashed changes
         switch (command) {
         case LIST:
             return new ListCommand();

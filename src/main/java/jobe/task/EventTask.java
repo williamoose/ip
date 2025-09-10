@@ -22,22 +22,19 @@ public class EventTask extends Task {
      */
     public EventTask(String taskDescription, String startDate, String endDate) throws JobeException {
         super(taskDescription);
-<<<<<<< Updated upstream
-        String from = StringUtils.splitStringAndRemoveFirstWord(fromDate);
-        String to = StringUtils.splitStringAndRemoveFirstWord(toDate);
-        this.fromDate = DateUtils.convertToDateTime(from);
-        this.toDate = DateUtils.convertToDateTime(to);
-=======
-        
         String from = StringUtils.splitStringAndRemoveFirstWord(startDate);
         String to = StringUtils.splitStringAndRemoveFirstWord(endDate);
-        
         this.startDate = DateUtils.convertToDateTime(from);
         this.endDate = DateUtils.convertToDateTime(to);
         
+        String start = StringUtils.splitStringAndRemoveFirstWord(startDate);
+        String end = StringUtils.splitStringAndRemoveFirstWord(endDate);
+        
+        this.startDate = DateUtils.convertToDateTime(start);
+        this.endDate = DateUtils.convertToDateTime(end);
+        
         assert startDate != null : "Start date should never be null";
         assert endDate != null : "End date should never be null";
->>>>>>> Stashed changes
     }
     
     /**
