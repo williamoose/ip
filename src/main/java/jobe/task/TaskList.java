@@ -19,6 +19,13 @@ public class TaskList {
         this.listOfTasks = new ArrayList<>();
     }
     
+    /**
+     * Marks a task corresponding to the input index as done.
+     *
+     * @param index Index of task user wants to mark as done.
+     * @return Task which has been marked as done.
+     * @throws JobeException If user entered an index which does not correspond to any task.
+     */
     public Task markTask(int index) throws JobeException {
         if (index > this.size()) {
             throw new JobeException("OOPS!!!! You are trying to mark a task which does not exist!");
@@ -29,6 +36,13 @@ public class TaskList {
         return task;
     }
     
+    /**
+     * Unmarks a task corresponding to the input index as done.
+     *
+     * @param index Index of task user wants to mark as undone.
+     * @return Task which has been marked as undone.
+     * @throws JobeException If user entered an index which does not correspond to any task.
+     */
     public Task unmarkTask(int index) throws JobeException {
         if (index > this.size()) {
             throw new JobeException("OOPS!!!! You are trying to unmark a task which does not exist!");
@@ -39,24 +53,54 @@ public class TaskList {
         return task;
     }
     
+    /**
+     * Creates a todo task.
+     *
+     * @param taskDescription Description of task.
+     * @return The created todo task.
+     */
     public Task createTodoTask(String taskDescription) {
         Task task = new TodoTask(taskDescription);
         this.addTask(task);
         return task;
     }
     
+    /**
+     * Creates a deadline task.
+     *
+     * @param taskDescription Description of task.
+     * @param deadline Deadline of task.
+     * @return The created deadline task.
+     * @throws JobeException If user entered the deadline in the wrong date/time format.
+     */
     public Task createDeadlineTask(String taskDescription, String deadline) throws JobeException {
-        Task task = new DeadlineTask(taskDescription, deadline);
+        Task task = DeadlineTask.createDeadlineTask(taskDescription, deadline);
         this.addTask(task);
         return task;
     }
     
+    /**
+     * Creates an event task.
+     *
+     * @param taskDescription Description of task.
+     * @param startDate Start date/time of the event task.
+     * @param endDate End date/time of the event task.
+     * @return The created event task.
+     * @throws JobeException if user entered the start/end date/time in the wrong date/time format.
+     */
     public Task createEventTask(String taskDescription, String startDate, String endDate) throws JobeException {
-        Task task = new EventTask(taskDescription, startDate, endDate);
+        Task task = EventTask.createEventTask(taskDescription, startDate, endDate);
         this.addTask(task);
         return task;
     }
     
+    /**
+     * Deletes a task corresponding to the input index.
+     *
+     * @param index Index of task user wants to delete.
+     * @return Task which has been deleted.
+     * @throws JobeException If user entered an index which does not correspond to any task.
+     */
     public Task deleteTask(int index) throws JobeException {
         if (index > this.size()) {
             throw new JobeException("OOPS!!!! You are trying to delete a task which does not exist!");
@@ -67,6 +111,13 @@ public class TaskList {
         return task;
     }
     
+    /**
+     * Finds a task or tasks which contain the given keyword.
+     *
+     * @param keyword keyword that user input.
+     * @return A list of tasks which contain the keyword.
+     * @throws JobeException If there are no tasks containing the keyword.
+     */
     public List<Task> findTask(String keyword) throws JobeException {
         List<Task> list = this.toStream()
           .filter(task -> task.getTaskDescription().contains(keyword))

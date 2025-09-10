@@ -19,6 +19,7 @@ public class Storage {
     private File file;
     public static final String TASKS_FILE_PATH_STRING = "./data/jobe.txt";
     public static final Path TASKS_FILE_PATH = Paths.get(TASKS_FILE_PATH_STRING);
+    private StringBuilder statusMessages = new StringBuilder();
     
     /**
      * Constructor to load tasks into file if file exists.
@@ -31,28 +32,41 @@ public class Storage {
     public Storage(TaskList taskList) {
         this.file = new File(TASKS_FILE_PATH_STRING);
         
-        File parentDirectory = file.getParentFile();
-        if (parentDirectory != null && !parentDirectory.exists()) {
-            if (parentDirectory.mkdirs()) {
-                System.out.println("Parent directory 'data' successfully created!");
-            } else {
-                System.out.println("Failed to create parent directory 'data'.");
-            }
-        }
-        
-        if (!file.exists()) {
-            try {
-                if (file.createNewFile()) {
-                    System.out.println("File 'jobe.txt' containing tasks successfully created!");
-                } else {
-                    System.out.println("File 'jobe.txt' could not be created");
-                }
-            } catch (IOException ioe) {
-                System.out.println("Creation of file has failed with error: " + ioe.getMessage());
-            }
-        }
+        this.createParentDirectory();
+        this.createFileIfMissing();
         
         this.loadTasks(taskList);
+    }
+    
+    private void createParentDirectory() {
+        File parentDirectory = file.getParentFile();
+        
+        boolean parentDirectoryExists = parentDirectory == null || parentDirectory.exists();
+        if (parentDirectoryExists) {
+            return;
+        }
+        
+        if (parentDirectory.mkdirs()) {
+            this.statusMessages.append("Parent directory 'data' successfully created!\n");
+        } else {
+            this.statusMessages.append("Failed to create parent directory 'data'.\n");
+        }
+    }
+    
+    private void createFileIfMissing() {
+        if (file.exists()) {
+            return;
+        }
+        
+        try {
+            if (file.createNewFile()) {
+               statusMessages.append("File 'jobe.txt' containing tasks successfully created!");
+            } else {
+               statusMessages.append("File 'jobe.txt' could not be created");
+            }
+        } catch (IOException ioe) {
+            System.out.println("Creation of file has failed with error: " + ioe.getMessage());
+        }
     }
     
     /**
@@ -86,5 +100,9 @@ public class Storage {
         } catch (JobeException je) {
             System.out.println(je.getMessage());
         }
+    }
+    
+    public String getStatusMessages() {
+        return this.statusMessages.toString();
     }
 }

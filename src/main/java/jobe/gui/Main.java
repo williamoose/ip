@@ -21,9 +21,14 @@ public class Main extends Application {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
+            
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setJobe(jobe);
+            
+            MainWindow controller = fxmlLoader.getController();
+            controller.setJobe(jobe);
+            controller.showStartupMessages();
+            
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

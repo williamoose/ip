@@ -15,12 +15,13 @@ public class EventCommand extends Command {
     private String endDate;
     
     /**
-     * Initialises an EventCommand object.
+     * Creates an EventCommand object.
      *
-     * @param args User input without command word.
-     * @throws JobeException if user forgets to input task description, start, or end date.
+     * @param args User's input without the command word.
+     * @return An EventCommand object with the corresponding arguments.
+     * @throws JobeException If user forgets to input any part of the event task description.
      */
-    public EventCommand(String args) throws JobeException {
+    public static EventCommand createEventCommand(String args) throws JobeException {
         String[] taskDescription = args.split("/", 2);
         
         if (taskDescription[0].isBlank()) {
@@ -37,9 +38,13 @@ public class EventCommand extends Command {
             throw new JobeException("OOPS!!!! You forgot to specify the END date/time!");
         }
         
-        this.taskDescription = taskDescription[0];
-        this.startDate = dates[0];
-        this.endDate = dates[1];
+        return new EventCommand(taskDescription[0], dates[0], dates[1]);
+    }
+    
+    public EventCommand(String taskDescription, String startDate, String endDate) throws JobeException {
+        this.taskDescription = taskDescription;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
     
     /**

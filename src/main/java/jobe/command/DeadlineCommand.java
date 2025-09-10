@@ -17,12 +17,13 @@ public class DeadlineCommand extends Command {
     private String deadline;
     
     /**
-     * Initialises a DeadlineCommand object.
+     * Creates a DeadlineCommand Object
      *
-     * @param args User input without command word.
-     * @throws JobeException if user forgets to input task description or deadline.
+     * @param args User's input without the command word.
+     * @return A DeadlineCommand object with the corresponding arguments.
+     * @throws JobeException If user forgets to input any part of the deadline task description.
      */
-    public DeadlineCommand(String args) throws JobeException {
+    public static DeadlineCommand createDeadlineCommand(String args) throws JobeException {
         String[] taskDescription = args.split("/", 2);
         
         if (taskDescription[0].isBlank()) {
@@ -33,8 +34,12 @@ public class DeadlineCommand extends Command {
             throw new JobeException("OOPS!!!! You forgot to specify the deadline!");
         }
         
-        this.taskDescription = taskDescription[0];
-        this.deadline = taskDescription[1];
+        return new DeadlineCommand(taskDescription[0], taskDescription[1]);
+    }
+    
+    public DeadlineCommand(String taskDescription, String deadline) throws JobeException {
+        this.taskDescription = taskDescription;
+        this.deadline = deadline;
     }
     
     /**
