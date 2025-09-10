@@ -12,8 +12,12 @@ import jobe.ui.Ui;
 public class UnmarkCommand extends Command {
     private int index;
     
-    public UnmarkCommand(int index) {
-        this.index = index;
+    public UnmarkCommand(String args) throws JobeException {
+        try {
+            this.index = Integer.parseInt(args) - 1;
+        } catch (NumberFormatException e) {
+            throw new JobeException("OOPS!!!! The index must be a number!");
+        }
     }
     
     /**
@@ -27,12 +31,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
-        if (this.index > taskList.size()) {
-            throw new JobeException("OOPS!!!! You are trying to unmark a task which does not exist!");
-        }
-        
-        Task task = taskList.getTask(this.index);
-        task.setUndone();
+        Task task = taskList.unmarkTask(this.index);
         storage.saveTasks(taskList);
         ui.showUnmarkResponse(task);
     }

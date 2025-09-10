@@ -2,7 +2,6 @@ package jobe.command;
 
 import jobe.exception.JobeException;
 import jobe.storage.Storage;
-import jobe.task.EventTask;
 import jobe.task.Task;
 import jobe.task.TaskList;
 import jobe.ui.Ui;
@@ -12,20 +11,35 @@ import jobe.ui.Ui;
  */
 public class EventCommand extends Command {
     private String taskDescription;
-    private String fromTime;
-    private String toTime;
+    private String startDate;
+    private String endDate;
     
     /**
-     * Initialises a new EventCommand object.
+     * Initialises an EventCommand object.
      *
-     * @param taskDescription String description of task.
-     * @param fromTime Start date/time of event.
-     * @param toTime End date/time of event.
+     * @param args User input without command word.
+     * @throws JobeException if user forgets to input task description, start, or end date.
      */
-    public EventCommand(String taskDescription, String fromTime, String toTime) {
-        this.taskDescription = taskDescription;
-        this.fromTime = fromTime;
-        this.toTime = toTime;
+    public EventCommand(String args) throws JobeException {
+        String[] taskDescription = args.split("/", 2);
+        
+        if (taskDescription[0].isBlank()) {
+            throw new JobeException("OOPS!!!! The description of an event task cannot be empty!");
+        }
+        
+        if (taskDescription.length < 2) {
+            throw new JobeException("OOPS!!!! You forgot to specify the START date/time!");
+        }
+        
+        String[] dates = taskDescription[1].split("/to");
+        
+        if (dates.length < 2) {
+            throw new JobeException("OOPS!!!! You forgot to specify the END date/time!");
+        }
+        
+        this.taskDescription = taskDescription[0];
+        this.startDate = dates[0];
+        this.endDate = dates[1];
     }
     
     /**
@@ -39,8 +53,7 @@ public class EventCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
-        Task task = new EventTask(this.taskDescription, this.fromTime, this.toTime);
-        taskList.addTask(task);
+        Task task = taskList.createEventTask(this.taskDescription, this.startDate, this.endDate);
         storage.saveTasks(taskList);
         ui.showEventResponse(task, taskList);
     }
