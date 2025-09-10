@@ -1,7 +1,9 @@
 package jobe.command;
 
+import jobe.Jobe;
 import jobe.exception.JobeException;
 import jobe.storage.Storage;
+import jobe.stringutils.StringUtils;
 import jobe.task.DeadlineTask;
 import jobe.task.Task;
 import jobe.task.TaskList;
@@ -17,12 +19,22 @@ public class DeadlineCommand extends Command {
     /**
      * Initialises a DeadlineCommand object.
      *
-     * @param taskDescription String description of task.
-     * @param deadline Deadline of task.
+     * @param args User input without command word.
+     * @throws JobeException if user forgets to input task description or deadline.
      */
-    public DeadlineCommand(String taskDescription, String deadline) {
-        this.taskDescription = taskDescription;
-        this.deadline = deadline;
+    public DeadlineCommand(String args) throws JobeException {
+        String[] taskDescription = args.split("/", 2);
+        
+        if (taskDescription[0].isBlank()) {
+            throw new JobeException("OOPS!!!! The description of a deadline task cannot be empty!");
+        }
+        
+        if (taskDescription.length < 2) {
+            throw new JobeException("OOPS!!!! You forgot to specify the deadline!");
+        }
+        
+        this.taskDescription = taskDescription[0];
+        this.deadline = taskDescription[1];
     }
     
     /**
@@ -36,8 +48,7 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
-        Task task = new DeadlineTask(this.taskDescription, this.deadline);
-        taskList.addTask(task);
+        Task task = taskList.createDeadlineTask(this.taskDescription, this.deadline);
         storage.saveTasks(taskList);
         ui.showDeadlineResponse(task, taskList);
     }

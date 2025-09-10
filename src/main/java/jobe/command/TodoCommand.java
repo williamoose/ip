@@ -1,6 +1,9 @@
 package jobe.command;
 
+import jobe.Jobe;
+import jobe.exception.JobeException;
 import jobe.storage.Storage;
+import jobe.stringutils.StringUtils;
 import jobe.task.Task;
 import jobe.task.TaskList;
 import jobe.task.TodoTask;
@@ -12,7 +15,11 @@ import jobe.ui.Ui;
 public class TodoCommand extends Command {
     private String taskDescription;
     
-    public TodoCommand(String taskDescription) {
+    public TodoCommand(String taskDescription) throws JobeException {
+        if (taskDescription == null || taskDescription.isBlank()) {
+            throw new JobeException("OOPS!!!! The description of a todo task cannot be empty!");
+        }
+        
         this.taskDescription = taskDescription;
     }
     
@@ -26,8 +33,7 @@ public class TodoCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        Task task = new TodoTask(this.taskDescription);
-        taskList.addTask(task);
+        Task task = taskList.createTodoTask(this.taskDescription);
         storage.saveTasks(taskList);
         ui.showTodoResponse(task, taskList);
     }

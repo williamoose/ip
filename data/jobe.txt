@@ -1,5 +1,4 @@
 T / [ ] / read book
-T / [ ] / read
 T / [X] / read books
 D / [ ] / read books  / Feb 22 2022, 22:23
 D / [ ] / read books  / Aug 22 2024, 22:22
@@ -8,4 +7,12 @@ T / [ ] / read books
 T / [ ] / read book
 D / [ ] / read books  / Aug 22 2024, 22:22
 T / [ ] / read books
+<<<<<<< Updated upstream
 D / [ ] / read books  / Dec 22 2022, 22:22
+=======
+D / [ ] / read books  / Dec 22 2022, 22:22
+D / [ ] / read books  / Dec 22 2022, 22:22
+T / [X] / mark homework
+D / [ ] / read books  / Dec 22 2022, 22:22
+T / [ ] / mark homework
+>>>>>>> Stashed changes

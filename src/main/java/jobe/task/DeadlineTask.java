@@ -20,7 +20,9 @@ public class DeadlineTask extends Task {
      */
     public DeadlineTask(String taskDescription, String deadline) throws JobeException {
         super(taskDescription);
+        
         String removedFirstWord = StringUtils.splitStringAndRemoveFirstWord(deadline);
+        
         this.deadline = DateUtils.convertToDateTime(removedFirstWord);
     }
     

@@ -14,7 +14,11 @@ import jobe.ui.Ui;
 public class FindCommand extends Command {
     private String keyword;
     
-    public FindCommand(String keyword) {
+    public FindCommand(String keyword) throws JobeException {
+        if (keyword == null || keyword.isBlank()) {
+            throw new JobeException("OOPS!!!! You forgot to enter your keyword!");
+        }
+        
         this.keyword = keyword;
     }
     
@@ -29,14 +33,7 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
-        List<Task> list = taskList.toStream()
-            .filter(task -> task.getTaskDescription().contains(this.keyword))
-            .toList();
-        
-        if (list.isEmpty()) {
-            throw new JobeException("OOPS!!!! There are no matching tasks in your list!");
-        }
-        
+        List<Task> list = taskList.findTask(this.keyword);
         ui.showFindResponse(list);
     }
     
