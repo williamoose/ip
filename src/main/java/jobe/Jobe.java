@@ -11,10 +11,9 @@ import jobe.ui.Ui;
  * Main class for the Jobe Application.
  */
 public class Jobe {
-    private TaskList taskList;
-    private boolean isExit = false;
-    private Ui ui;
-    private Storage storage;
+    private final TaskList taskList;
+    private final Ui ui;
+    private final Storage storage;
     
     /**
      * Initialises a Jobe object.
@@ -32,6 +31,10 @@ public class Jobe {
      * @return Jobe's response.
      */
     public String getResponse(String input) {
+        assert taskList != null : "TaskList should never be null";
+        assert ui != null: "Ui should never be null";
+        assert storage != null: "Storage should never be null";
+        
         try {
             if (input.isBlank()) {
                 throw new JobeException("OOPS!!!! You forgot to type something!");
