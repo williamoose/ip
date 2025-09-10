@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import exception.JobeException;
+import jobe.exception.JobeException;
 
 public class DeadlineTaskTest {
     

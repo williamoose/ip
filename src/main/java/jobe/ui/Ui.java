@@ -114,7 +114,7 @@ public class Ui {
      * @param task Task to be unmarked.
      */
     public void showUnmarkResponse(Task task) {
-        this.response =  "OK, I've marked this task as not done yet:" + task;
+        this.response =  "OK, I've marked this task as not done yet:\n" + task;
     }
     
     /**

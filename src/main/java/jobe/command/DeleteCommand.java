@@ -12,8 +12,12 @@ import jobe.ui.Ui;
 public class DeleteCommand extends Command {
     private int index;
     
-    public DeleteCommand(int index) {
-        this.index = index;
+    public DeleteCommand(String args) throws JobeException {
+        try {
+            this.index = Integer.parseInt(args) - 1;
+        } catch (NumberFormatException e) {
+            throw new JobeException("OOPS!!!! The index must be a number!");
+        }
     }
     
     /**
@@ -27,12 +31,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
-        if (this.index > taskList.size()) {
-            throw new JobeException("OOPS!!!! You are trying to delete a task which does not exist!");
-        }
-        
-        Task task = taskList.getTask(this.index);
-        taskList.removeTask(this.index);
+        Task task = taskList.deleteTask(this.index);
         storage.saveTasks(taskList);
         ui.showDeleteResponse(task, taskList);
     }
