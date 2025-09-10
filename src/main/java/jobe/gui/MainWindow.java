@@ -1,7 +1,6 @@
 package jobe.gui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -20,13 +19,11 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
     
     private Jobe jobe;
     private Ui ui;
     
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/penguin.jpg"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.jpg"));
     private Image jobeImage = new Image(this.getClass().getResourceAsStream("/images/jobe.jpg"));
     
     @FXML

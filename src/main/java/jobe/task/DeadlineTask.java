@@ -22,6 +22,7 @@ public class DeadlineTask extends Task {
         super(taskDescription);
         String removedFirstWord = StringUtils.splitStringAndRemoveFirstWord(deadline);
         this.deadline = DateUtils.convertToDateTime(removedFirstWord);
+        assert this.deadline != null : "Deadline should never be null";
     }
     
     /**

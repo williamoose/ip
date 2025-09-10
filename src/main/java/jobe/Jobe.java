@@ -11,10 +11,9 @@ import jobe.ui.Ui;
  * Main class for the Jobe Application.
  */
 public class Jobe {
-    private TaskList taskList;
-    private boolean isExit = false;
-    private Ui ui;
-    private Storage storage;
+    private final TaskList taskList;
+    private final Ui ui;
+    private final Storage storage;
     
     /**
      * Initialises a Jobe object.
@@ -26,38 +25,16 @@ public class Jobe {
     }
     
     /**
-     * @deprecated Method is part of the old CLI version.
-     * Runs the main application. Continues reading user inputs until isExit is set to true.
-     */
-    @Deprecated
-    public void run(String input) {
-        this.ui.showHelloResponse();
-        
-        while (!this.isExit) {
-            try {
-                
-                if (input.isBlank()) {
-                    throw new JobeException("OOPS!!!! You forgot to type something!");
-                }
-                
-                Command c = Parser.parse(input);
-                c.execute(this.taskList, this.ui, this.storage);
-                this.isExit = c.isExit();
-            } catch (JobeException e) {
-                System.out.println(e.getMessage());
-            } catch (Exception e) {
-                System.out.println(e.getMessage() + " Try again later!");
-            }
-        }
-    }
-    
-    /**
      * Gets response to user input for Jobe to display.
      *
      * @param input User's input.
      * @return Jobe's response.
      */
     public String getResponse(String input) {
+        assert taskList != null : "TaskList should never be null";
+        assert ui != null: "Ui should never be null";
+        assert storage != null: "Storage should never be null";
+        
         try {
             if (input.isBlank()) {
                 throw new JobeException("OOPS!!!! You forgot to type something!");

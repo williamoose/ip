@@ -125,24 +125,4 @@ public class Ui {
     public String getResponse() {
         return this.response;
     }
-    
-    /**
-     * @deprecated Method is part of the old CLI version.
-     * Reads user's input using a scanner object.
-     *
-     * @return A string representing user's input.
-     */
-    @Deprecated
-    public String readMessage() {
-        return sc.nextLine();
-    }
-    
-    /**
-     * Prints out messages to say bye to user upon exiting Jobe.
-     */
-    @Deprecated
-    public void sayBye() {
-        System.out.println("Bye. Hope to see you again soon!");
-        sc.close();
-    }
 }

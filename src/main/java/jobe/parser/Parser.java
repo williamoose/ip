@@ -1,6 +1,5 @@
 package jobe.parser;
 
-import jobe.command.ByeCommand;
 import jobe.command.Command;
 import jobe.command.CommandType;
 import jobe.command.DeadlineCommand;
@@ -33,8 +32,14 @@ public class Parser {
      * @throws JobeException If individual command classes throws an exception.
      */
     public static Command parse(String input) throws JobeException {
+        assert input != null : "Input should never be null";
+        assert !input.isBlank() : "Input should never be blank";
+        
         String[] splitString = input.split(" ", 2);
+        
         CommandType command = CommandType.stringToCommand(splitString[0]);
+        assert command != null : "Command type should never be null";
+        
         switch (command) {
         case LIST:
             return new ListCommand();
@@ -113,7 +118,9 @@ public class Parser {
      */
     public static Task parseTask(String input) throws JobeException {
         String[] splitString = input.split(" / ");
+        
         TaskType taskType = TaskType.stringToCommand(splitString[0]);
+        
         // if splitString[1] equals to "[X]" means that it has been marked as done
         // and hence isDone is true.
         boolean isDone = splitString[1].equals("[X]");

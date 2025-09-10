@@ -26,6 +26,8 @@ public class EventTask extends Task {
         String to = StringUtils.splitStringAndRemoveFirstWord(toDate);
         this.fromDate = DateUtils.convertToDateTime(from);
         this.toDate = DateUtils.convertToDateTime(to);
+        assert fromDate != null : "Start date should never be null";
+        assert toDate != null : "End date should never be null";
     }
     
     /**
