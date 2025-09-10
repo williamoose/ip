@@ -65,7 +65,9 @@ public class Storage {
                statusMessages.append("File 'jobe.txt' could not be created");
             }
         } catch (IOException ioe) {
-            System.out.println("Creation of file has failed with error: " + ioe.getMessage());
+            statusMessages.append("Creation of file has failed with error: ")
+                    .append(ioe.getMessage())
+                    .append('\n');
         }
     }
     
@@ -78,7 +80,7 @@ public class Storage {
         try {
             Files.writeString(TASKS_FILE_PATH, taskList.convertToFileFormat());
         } catch (IOException e) {
-            System.out.println("OOPS!!!! File failed to save.");
+            statusMessages.append("OOPS!!!! File failed to save.");
         }
     }
     
@@ -91,15 +93,18 @@ public class Storage {
         try {
             List<String> lines = Files.readAllLines(TASKS_FILE_PATH);
             for (String line: lines) {
-                Task task = Parser.parseTask(line);
-                taskList.addTask(task);
-                System.out.println(task);
+                processTask(line, taskList);
             }
         } catch (IOException e) {
-            System.out.println("Failed to read from file. Please try again!");
+            statusMessages.append("Failed to read from file. Please try again!");
         } catch (JobeException je) {
-            System.out.println(je.getMessage());
+            statusMessages.append(je.getMessage());
         }
+    }
+    
+    private void processTask(String line, TaskList taskList) throws JobeException {
+        Task task = Parser.parseTask(line);
+        taskList.addTask(task);
     }
     
     public String getStatusMessages() {
