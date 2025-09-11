@@ -24,6 +24,10 @@ public class EventTask extends Task {
     public static EventTask createEventTask(String taskDescription, String startDate, String endDate) throws JobeException {
         String startDateString = StringUtils.splitStringAndRemoveFirstWord(startDate);
         String endDateString = StringUtils.splitStringAndRemoveFirstWord(endDate);
+        assert startDateString != null : "Start date/time should never be null";
+        assert !startDateString.isEmpty() : "Start date/time should never be empty";
+        assert endDateString != null : "End date/time should never be null";
+        assert !endDateString.isEmpty() : "End date/time should never be empty";
         
         String formattedStartDate = DateUtils.convertToDateTime(startDateString);
         String formattedEndDate = DateUtils.convertToDateTime(endDateString);

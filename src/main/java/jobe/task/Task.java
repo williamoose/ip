@@ -1,5 +1,7 @@
 package jobe.task;
 
+import jobe.exception.JobeException;
+
 /**
  * Represents one singular task.
  */
@@ -47,6 +49,40 @@ public class Task {
     
     public String getTaskDescription() {
         return this.taskDescription;
+    }
+    
+    public void checkDuplicates(Task task, TaskList taskList) throws JobeException {
+        boolean duplicate = taskList
+                .toStream()
+                .anyMatch(existing -> existing.isDuplicate(task));
+        
+        if (!duplicate) {
+            return;
+        }
+        
+        if (task instanceof TodoTask) {
+            throw new JobeException("OOPS!!!! A Todo task with the same description already exists!");
+        }
+        if (task instanceof DeadlineTask) {
+            throw new JobeException("OOPS!!!! A Deadline task with the same description already "
+              + "exists with the same or an earlier deadline.");
+        }
+        if (task instanceof EventTask) {
+            throw new JobeException("hello");
+        }
+    }
+    
+    public boolean isDuplicate(Task task) {
+        if (this == task) {
+            return true;
+        }
+        
+        boolean isNullOrIsDifferentClass = task == null || this.getClass() != task.getClass();
+        if (isNullOrIsDifferentClass) {
+            return false;
+        }
+        
+        return this.taskDescription.equals(task.taskDescription);
     }
     
     /**

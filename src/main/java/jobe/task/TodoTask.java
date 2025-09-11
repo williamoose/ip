@@ -1,7 +1,9 @@
 package jobe.task;
 
+import jobe.exception.JobeException;
+
 /**
- * Represents a to do task.
+ * Represents a todo task.
  */
 public class TodoTask extends Task {
     

@@ -30,9 +30,10 @@ public class TodoCommand extends Command {
      * @param taskList Current user's task list for new tasks to be added.
      * @param ui Ui object used to display messages to the user.
      * @param storage Storage object to save tasks to user's local file.
+     * @throws JobeException If error occurs when creating todo task.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
         Task task = taskList.createTodoTask(this.taskDescription);
         storage.saveTasks(taskList);
         ui.showTodoResponse(task, taskList);

@@ -59,8 +59,9 @@ public class TaskList {
      * @param taskDescription Description of task.
      * @return The created todo task.
      */
-    public Task createTodoTask(String taskDescription) {
+    public Task createTodoTask(String taskDescription) throws JobeException {
         Task task = new TodoTask(taskDescription);
+        task.checkDuplicates(task, this);
         this.addTask(task);
         return task;
     }
@@ -75,6 +76,7 @@ public class TaskList {
      */
     public Task createDeadlineTask(String taskDescription, String deadline) throws JobeException {
         Task task = DeadlineTask.createDeadlineTask(taskDescription, deadline);
+        task.checkDuplicates(task, this);
         this.addTask(task);
         return task;
     }
