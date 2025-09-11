@@ -66,10 +66,17 @@ public class DeadlineTask extends Task {
     }
     
     private boolean isBeforeDeadline(DeadlineTask otherTask) {
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy, HH:mm");
-        LocalDateTime dt1 = LocalDateTime.parse(otherTask.deadline, outputFormatter);
-        LocalDateTime dt2 = LocalDateTime.parse(this.deadline, outputFormatter);
+        DateTimeFormatter formatter = DateUtils.OUTPUT_DATE_TIME_FORMATTER;
+        LocalDateTime dt1 = LocalDateTime.parse(otherTask.deadline, formatter);
+        LocalDateTime dt2 = LocalDateTime.parse(this.deadline, formatter);
         return dt1.isBefore(dt2);
+    }
+    
+    @Override
+    public void throwDuplicateTaskException() throws JobeException {
+        throw new JobeException("OOPS!!!! A Deadline task with the same description already "
+                + "exists with the same or an earlier deadline.\n"
+                + "Please choose a different deadline!");
     }
     
     /**

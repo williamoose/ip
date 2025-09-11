@@ -92,6 +92,7 @@ public class TaskList {
      */
     public Task createEventTask(String taskDescription, String startDate, String endDate) throws JobeException {
         Task task = EventTask.createEventTask(taskDescription, startDate, endDate);
+        task.checkDuplicates(task, this);
         this.addTask(task);
         return task;
     }

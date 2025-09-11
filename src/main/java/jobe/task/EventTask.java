@@ -1,5 +1,8 @@
 package jobe.task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import jobe.dateutils.DateUtils;
 import jobe.exception.JobeException;
 import jobe.stringutils.StringUtils;
@@ -48,6 +51,47 @@ public class EventTask extends Task {
         super(taskDescription, isDone);
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+    
+    @Override
+    public boolean isDuplicate(Task task) {
+        boolean isSameDescription = super.isDuplicate(task);
+        
+        if (!isSameDescription) {
+            return false;
+        }
+        
+        if (!(task instanceof EventTask)) {
+            return false;
+        }
+        
+        EventTask otherTask = (EventTask) task;
+        boolean isSameStartDate = this.startDate.equals(otherTask.startDate);
+        boolean isSameEndDate = this.endDate.equals(otherTask.endDate);
+        
+        if (isSameStartDate && isSameEndDate) {
+            return true;
+        }
+        
+        return isOverlap(otherTask);
+    }
+    
+    private boolean isOverlap(EventTask otherTask) {
+        DateTimeFormatter formatter = DateUtils.OUTPUT_DATE_TIME_FORMATTER;
+        LocalDateTime thisStart = LocalDateTime.parse(this.startDate, formatter);
+        LocalDateTime thisEnd = LocalDateTime.parse(this.endDate, formatter);
+        LocalDateTime otherStart = LocalDateTime.parse(otherTask.startDate, formatter);
+        LocalDateTime otherEnd = LocalDateTime.parse(otherTask.endDate, formatter);
+        
+        // Overlap exists if thisStart < otherEnd && otherStart < thisEnd
+        return thisStart.isBefore(otherEnd) && otherStart.isBefore(thisEnd);
+    }
+    
+    @Override
+    public void throwDuplicateTaskException() throws JobeException {
+        throw new JobeException("OOPS!!!! An Event with the same description "
+                + "or overlapping time already exists!\n"
+                + "Please choose a different time period!");
     }
     
     /**

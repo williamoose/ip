@@ -1,5 +1,6 @@
 package jobe.task;
 
+import jobe.Jobe;
 import jobe.exception.JobeException;
 
 /**
@@ -23,7 +24,7 @@ public class Task {
      * Constructor if tasks isDone status needs to be manually set.
      *
      * @param taskDescription String description of task.
-     * @param isDone Boolean to represent whether a task is done.
+     * @param isDone          Boolean to represent whether a task is done.
      */
     public Task(String taskDescription, boolean isDone) {
         this.isDone = isDone;
@@ -53,23 +54,14 @@ public class Task {
     
     public void checkDuplicates(Task task, TaskList taskList) throws JobeException {
         boolean duplicate = taskList
-                .toStream()
-                .anyMatch(existing -> existing.isDuplicate(task));
+          .toStream()
+          .anyMatch(existing -> existing.isDuplicate(task));
         
         if (!duplicate) {
             return;
         }
         
-        if (task instanceof TodoTask) {
-            throw new JobeException("OOPS!!!! A Todo task with the same description already exists!");
-        }
-        if (task instanceof DeadlineTask) {
-            throw new JobeException("OOPS!!!! A Deadline task with the same description already "
-              + "exists with the same or an earlier deadline.");
-        }
-        if (task instanceof EventTask) {
-            throw new JobeException("hello");
-        }
+        task.throwDuplicateTaskException();
     }
     
     public boolean isDuplicate(Task task) {
@@ -83,6 +75,11 @@ public class Task {
         }
         
         return this.taskDescription.equals(task.taskDescription);
+    }
+    
+    public void throwDuplicateTaskException() throws JobeException {
+        throw new JobeException("OOPS!!!! A Todo task with the same description already exists!\n"
+                + "Please create a different task!");
     }
     
     /**
