@@ -118,7 +118,7 @@ public class Ui {
     }
     
     /**
-     * Get response for Jobe to display.
+     * Gets response for Jobe to display.
      *
      * @return response.
      */
