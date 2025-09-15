@@ -1,12 +1,14 @@
 package jobe.task;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import jobe.exception.JobeException;
+import jobe.task.EventTask;
 
-// The First four test cases of this test file was generated using ChatGPT as part of the
+// This test file was generated using ChatGPT as part of the
 // A-AiAssisted increment.
 public class EventTaskTest {
     
@@ -55,6 +57,33 @@ public class EventTaskTest {
         );
         String result = event.convertToFileFormat();
         assertTrue(result.endsWith("Aug 24 2024, 10:00 / Aug 24 2024, 12:00"));
+    }
+    
+    @Test
+    public void testCreateEventTask_endBeforeStart_throwsException() {
+        JobeException exception = assertThrows(JobeException.class, () -> {
+            EventTask.createEventTask("test",
+                    "from 24/08/2024 1400",
+                    "to 24/08/2024 1200"
+            );
+        });
+        assertTrue(exception.getMessage().contains("OOPS!!!! Your end date is before your start date. "
+                + "Please check your input dates!"
+        ));
+    }
+    
+    @Test
+    public void testIsDuplicate_overlap() throws JobeException {
+        EventTask event1 = EventTask.createEventTask("test",
+                "from 24/08/2024 1000",
+                "to 24/08/2024 1200"
+        );
+        EventTask event2 = EventTask.createEventTask("test",
+                "from 24/08/2024 1000",
+                "to 24/08/2024 1200"
+        );
+        
+        assertTrue(event1.isDuplicate(event2));
     }
 }
 

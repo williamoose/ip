@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import jobe.exception.JobeException;
+import jobe.task.TodoTask;
+
 public class TodoTaskTest {
     
     /**
@@ -25,5 +28,12 @@ public class TodoTaskTest {
         TodoTask todo = new TodoTask("test");
         String result = todo.convertToFileFormat();
         assertTrue(result.startsWith("T / "));
+    }
+    
+    @Test
+    public void testIsDuplicate_overlap() throws JobeException {
+        TodoTask todo1 = new TodoTask("test");
+        TodoTask todo2 = new TodoTask("test");
+        assertTrue(todo1.isDuplicate(todo2));
     }
 }

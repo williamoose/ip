@@ -45,11 +45,15 @@ public class Task {
      * @return String representation of task's done status.
      */
     public String printStatus() {
-        return isDone ? "[X]" : "[ ]";
+        return this.isDone ? "[X]" : "[ ]";
     }
     
     public String getTaskDescription() {
         return this.taskDescription;
+    }
+    
+    public boolean getStatus() {
+        return this.isDone;
     }
     
     /**
@@ -84,7 +88,7 @@ public class Task {
     }
     
     public void throwDuplicateTaskException() throws JobeException {
-        throw new JobeException("OOPS!!!! A Todo task with the same description already exists!\n"
+        throw new JobeException("OOPS!!!! A task with the same description already exists!\n"
                 + "Please create a different task!");
     }
     

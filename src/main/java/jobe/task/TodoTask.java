@@ -15,6 +15,11 @@ public class TodoTask extends Task {
         super(taskDescription, isDone);
     }
     
+    @Override
+    public void throwDuplicateTaskException() throws JobeException {
+        throw new JobeException("OOPS!!!! A Todo task with the same description already exists!\n"
+                + "Please create a different task!");
+    }
     
     /**
      * {@inheritDoc}

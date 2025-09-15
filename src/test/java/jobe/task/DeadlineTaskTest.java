@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import jobe.exception.JobeException;
+import jobe.task.DeadlineTask;
 
 public class DeadlineTaskTest {
     
@@ -52,4 +53,14 @@ public class DeadlineTaskTest {
         assertTrue(result.endsWith(" / Aug 24 2024, 22:22"));
     }
     
+    @Test
+    public void testIsDuplicate_overlap() throws JobeException {
+        DeadlineTask deadline1 = DeadlineTask.createDeadlineTask("test",
+                "by 24/08/2024 2222"
+        );
+        DeadlineTask deadline2 = DeadlineTask.createDeadlineTask("test",
+                "by 24/08/2024 2222"
+        );
+        assertTrue(deadline1.isDuplicate(deadline2));
+    }
 }
