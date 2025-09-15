@@ -18,7 +18,6 @@ public class FindCommand extends Command {
         if (keyword == null || keyword.isBlank()) {
             throw new JobeException("OOPS!!!! You forgot to enter your keyword!");
         }
-        
         this.keyword = keyword;
     }
     

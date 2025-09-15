@@ -1,6 +1,7 @@
 package jobe.command;
 
 import jobe.exception.JobeException;
+import jobe.parser.Parser;
 import jobe.storage.Storage;
 import jobe.task.Task;
 import jobe.task.TaskList;
@@ -13,22 +14,18 @@ public class UnmarkCommand extends Command {
     private int index;
     
     public UnmarkCommand(String args) throws JobeException {
-        try {
-            this.index = Integer.parseInt(args) - 1;
-        } catch (NumberFormatException e) {
-            throw new JobeException("OOPS!!!! The index must be a number!");
-        }
+        this.index = Parser.parseTaskIndex(args);
     }
-    
-    /**
-     * Unmarks a task corresponding to user's input index,
-     * saves tasks to user's local file and prints confirmation messages to the user.
-     *
-     * @param taskList Current user's task list for new tasks to be added.
-     * @param ui Ui object used to display messages to the user.
-     * @param storage Storage object to save tasks to user's local file.
-     * @throws JobeException If user is trying to unmark a task which does not exist.
-     */
+        
+        /**
+         * Unmarks a task corresponding to user's input index,
+         * saves tasks to user's local file and prints confirmation messages to the user.
+         *
+         * @param taskList Current user's task list for new tasks to be added.
+         * @param ui Ui object used to display messages to the user.
+         * @param storage Storage object to save tasks to user's local file.
+         * @throws JobeException If user is trying to unmark a task which does not exist.
+         */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws JobeException {
         Task task = taskList.unmarkTask(this.index);

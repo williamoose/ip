@@ -66,8 +66,8 @@ public class EventTask extends Task {
         }
         
         EventTask otherTask = (EventTask) task;
-        boolean isSameStartDate = this.startDate.equals(otherTask.startDate);
-        boolean isSameEndDate = this.endDate.equals(otherTask.endDate);
+        boolean isSameStartDate = this.startDate.trim().equals(otherTask.startDate.trim());
+        boolean isSameEndDate = this.endDate.trim().equals(otherTask.endDate.trim());
         
         if (isSameStartDate && isSameEndDate) {
             return true;

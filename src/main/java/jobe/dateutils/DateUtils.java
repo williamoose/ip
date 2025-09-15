@@ -25,7 +25,7 @@ public class DateUtils {
      */
     public static String convertToDateTime(String input) throws JobeException {
         try {
-            LocalDateTime date = LocalDateTime.parse(input, INPUT_DATE_TIME_FORMATTER);
+            LocalDateTime date = LocalDateTime.parse(input.trim(), INPUT_DATE_TIME_FORMATTER);
             return date.format(OUTPUT_DATE_TIME_FORMATTER);
         } catch (DateTimeParseException e) {
             throw new JobeException(
