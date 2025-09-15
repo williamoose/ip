@@ -33,4 +33,10 @@ public class DateUtils {
             );
         }
     }
+    
+    public static boolean isInvalidDate(String startDate, String endDate) {
+        LocalDateTime start = LocalDateTime.parse(startDate.trim(), INPUT_DATE_TIME_FORMATTER);
+        LocalDateTime end = LocalDateTime.parse(endDate.trim(), INPUT_DATE_TIME_FORMATTER);
+        return !start.isBefore(end);
+    }
 }
