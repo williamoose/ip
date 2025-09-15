@@ -1,6 +1,7 @@
 package jobe.command;
 
 import jobe.exception.JobeException;
+import jobe.parser.Parser;
 import jobe.storage.Storage;
 import jobe.task.Task;
 import jobe.task.TaskList;
@@ -13,11 +14,7 @@ public class DeleteCommand extends Command {
     private int index;
     
     public DeleteCommand(String args) throws JobeException {
-        try {
-            this.index = Integer.parseInt(args) - 1;
-        } catch (NumberFormatException e) {
-            throw new JobeException("OOPS!!!! The index must be a number!");
-        }
+        this.index = Parser.parseTaskIndex(args);
     }
     
     /**

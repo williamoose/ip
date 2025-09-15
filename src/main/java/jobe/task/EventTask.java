@@ -1,5 +1,7 @@
 package jobe.task;
 
+import static jobe.dateutils.DateUtils.convertToDateTime;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -32,11 +34,17 @@ public class EventTask extends Task {
         assert endDateString != null : "End date/time should never be null";
         assert !endDateString.isEmpty() : "End date/time should never be empty";
         
-        String formattedStartDate = DateUtils.convertToDateTime(startDateString);
-        String formattedEndDate = DateUtils.convertToDateTime(endDateString);
+        boolean isInvalidDate = DateUtils.isInvalidDate(startDateString, endDateString);
+        if (isInvalidDate) {
+            throw new JobeException("OOPS!!!! Your end date is before your start date. "
+                    + "Please check your input dates!");
+        }
         
+        String formattedStartDate = convertToDateTime(startDateString);
+        String formattedEndDate = convertToDateTime(endDateString);
         assert formattedStartDate != null : "Start date should never be null";
         assert formattedEndDate != null : "End date should never be null";
+        
         return new EventTask(taskDescription, formattedStartDate, formattedEndDate);
     }
     
@@ -66,8 +74,8 @@ public class EventTask extends Task {
         }
         
         EventTask otherTask = (EventTask) task;
-        boolean isSameStartDate = this.startDate.equals(otherTask.startDate);
-        boolean isSameEndDate = this.endDate.equals(otherTask.endDate);
+        boolean isSameStartDate = this.startDate.trim().equals(otherTask.startDate.trim());
+        boolean isSameEndDate = this.endDate.trim().equals(otherTask.endDate.trim());
         
         if (isSameStartDate && isSameEndDate) {
             return true;

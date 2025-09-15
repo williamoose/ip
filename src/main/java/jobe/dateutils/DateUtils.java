@@ -25,12 +25,18 @@ public class DateUtils {
      */
     public static String convertToDateTime(String input) throws JobeException {
         try {
-            LocalDateTime date = LocalDateTime.parse(input, INPUT_DATE_TIME_FORMATTER);
+            LocalDateTime date = LocalDateTime.parse(input.trim(), INPUT_DATE_TIME_FORMATTER);
             return date.format(OUTPUT_DATE_TIME_FORMATTER);
         } catch (DateTimeParseException e) {
             throw new JobeException(
               "OOPS!!!! Failed to parse DateTime, please format your Date and Time as dd/mm/yyyy hhmm."
             );
         }
+    }
+    
+    public static boolean isInvalidDate(String startDate, String endDate) {
+        LocalDateTime start = LocalDateTime.parse(startDate.trim(), INPUT_DATE_TIME_FORMATTER);
+        LocalDateTime end = LocalDateTime.parse(endDate.trim(), INPUT_DATE_TIME_FORMATTER);
+        return !start.isBefore(end);
     }
 }

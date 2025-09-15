@@ -38,7 +38,7 @@ public class Parser {
         CommandType command = CommandType.stringToCommand(splitString[0]);
         assert command != null : "Command type should never be null";
         
-        String args = splitString.length > 1 ? splitString[1] : "";
+        String args = splitString.length > 1 ? splitString[1].trim() : "";
         
         switch (command) {
         case LIST:
@@ -85,6 +85,22 @@ public class Parser {
             return new TodoTask(taskDescription, isDone);
         default:
             throw new JobeException("OOPS!!!! Task parsing failed");
+        }
+    }
+    
+    public static int parseTaskIndex(String args) throws JobeException {
+        try {
+            if (args.isBlank()) {
+                throw new JobeException("OOPS!!!! You have forgotten to input the task index!");
+            }
+            
+            if (args.trim().contains(" ")) {
+                throw new JobeException("OOPS!!!! You have input multiple indexes! Please only input one index.");
+            }
+            
+            return Integer.parseInt(args) - 1;
+        } catch (NumberFormatException e) {
+            throw new JobeException("OOPS!!!! The index must be a number!");
         }
     }
     

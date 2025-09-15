@@ -19,11 +19,16 @@ public class EventCommand extends Command {
      *
      * @param args User's input without the command word.
      * @return An EventCommand object with the corresponding arguments.
-     * @throws JobeException If user forgets to input any part of the event task description.
+     * @throws JobeException If user passes in incorrect inputs.
      */
     public static EventCommand createEventCommand(String args) throws JobeException {
-        String[] taskDescription = args.split("/", 2);
-        
+        String[] taskDescription = parseEventArgs(args);
+        return new EventCommand(taskDescription[0], taskDescription[1], taskDescription[2]);
+    }
+    
+    // ChatGPT was used to refactor and generate this method as part of A-AiAssisted
+    private static String[] parseEventArgs(String args) throws JobeException {
+        String[] taskDescription = args.split(" /", 2);
         if (taskDescription[0].isBlank()) {
             throw new JobeException("OOPS!!!! The description of an event task cannot be empty!");
         }
@@ -32,13 +37,17 @@ public class EventCommand extends Command {
             throw new JobeException("OOPS!!!! You forgot to specify the START date/time!");
         }
         
-        String[] dates = taskDescription[1].split("/to");
-        
+        String[] dates = taskDescription[1].split(" /");
         if (dates.length < 2) {
             throw new JobeException("OOPS!!!! You forgot to specify the END date/time!");
         }
         
-        return new EventCommand(taskDescription[0], dates[0], dates[1]);
+        if (dates.length > 2) {
+            throw new JobeException("OOPS!!!! You have entered additional parameters!\n"
+                    + "Please ensure you only enter the task description, start and end date/time!");
+        }
+        
+        return new String[] { taskDescription[0], dates[0].trim(), dates[1].trim() };
     }
     
     public EventCommand(String taskDescription, String startDate, String endDate) throws JobeException {

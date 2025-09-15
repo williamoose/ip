@@ -56,7 +56,9 @@ public class DeadlineTask extends Task {
         }
         
         DeadlineTask otherTask = (DeadlineTask) task;
-        boolean isSameDeadline = this.deadline.equals(otherTask.deadline);
+        String thisDeadlineTrimmed = this.deadline.trim();
+        String otherDeadlineTrimmed = otherTask.deadline.trim();
+        boolean isSameDeadline = thisDeadlineTrimmed.equals(otherDeadlineTrimmed);
         
         if (isSameDeadline) {
             return true;

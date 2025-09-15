@@ -1,10 +1,7 @@
 package jobe.command;
 
-import jobe.Jobe;
 import jobe.exception.JobeException;
 import jobe.storage.Storage;
-import jobe.stringutils.StringUtils;
-import jobe.task.DeadlineTask;
 import jobe.task.Task;
 import jobe.task.TaskList;
 import jobe.ui.Ui;
@@ -21,10 +18,16 @@ public class DeadlineCommand extends Command {
      *
      * @param args User's input without the command word.
      * @return A DeadlineCommand object with the corresponding arguments.
-     * @throws JobeException If user forgets to input any part of the deadline task description.
+     * @throws JobeException If user passes in incorrect inputs.
      */
     public static DeadlineCommand createDeadlineCommand(String args) throws JobeException {
-        String[] taskDescription = args.split("/", 2);
+        String[] taskDescription = parseAndValidateDeadlineArgs(args);
+        
+        return new DeadlineCommand(taskDescription[0], taskDescription[1].trim());
+    }
+    
+    private static String[] parseAndValidateDeadlineArgs(String args) throws JobeException {
+        String[] taskDescription = args.split(" /");
         
         if (taskDescription[0].isBlank()) {
             throw new JobeException("OOPS!!!! The description of a deadline task cannot be empty!");
@@ -34,7 +37,12 @@ public class DeadlineCommand extends Command {
             throw new JobeException("OOPS!!!! You forgot to specify the deadline!");
         }
         
-        return new DeadlineCommand(taskDescription[0], taskDescription[1]);
+        if (taskDescription.length > 2) {
+            throw new JobeException("OOPS!!!! You have entered additional parameters!\n"
+                    + "Please ensure you only enter the task description and deadline!");
+        }
+        
+        return taskDescription;
     }
     
     public DeadlineCommand(String taskDescription, String deadline) throws JobeException {

@@ -80,7 +80,7 @@ public class Task {
             return false;
         }
         
-        return this.taskDescription.equals(task.taskDescription);
+        return this.taskDescription.trim().equals(task.taskDescription.trim());
     }
     
     public void throwDuplicateTaskException() throws JobeException {
