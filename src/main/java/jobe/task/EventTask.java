@@ -40,7 +40,7 @@ public class EventTask extends Task {
         return new EventTask(taskDescription, formattedStartDate, formattedEndDate);
     }
     
-    public EventTask(String taskDescription, String startDate, String endDate) throws JobeException {
+    public EventTask(String taskDescription, String startDate, String endDate) {
         super(taskDescription);
         this.startDate = startDate;
         this.endDate = endDate;

@@ -17,3 +17,4 @@ D / [ ] / read book  / Feb 22 2022, 22:21
 E / [ ] / read book  / Feb 22 2022, 22:22 / Feb 24 2022, 22:22
 D / [ ] / read book  / Feb 23 2022, 22:22
 E / [ ] / read book  / Feb 25 2022, 22:22 / Feb 28 2022, 22:22
+T / [ ] / buy book

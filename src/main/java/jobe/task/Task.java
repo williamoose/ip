@@ -52,12 +52,18 @@ public class Task {
         return this.taskDescription;
     }
     
+    /**
+     * Checks whether
+     * @param task
+     * @param taskList
+     * @throws JobeException
+     */
     public void checkDuplicates(Task task, TaskList taskList) throws JobeException {
-        boolean duplicate = taskList
+        boolean isDuplicate = taskList
           .toStream()
           .anyMatch(existing -> existing.isDuplicate(task));
         
-        if (!duplicate) {
+        if (!isDuplicate) {
             return;
         }
         

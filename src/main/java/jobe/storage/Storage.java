@@ -16,9 +16,9 @@ import jobe.task.TaskList;
  * Storage class for file validation, creation, loading and saving.
  */
 public class Storage {
-    private File file;
     public static final String TASKS_FILE_PATH_STRING = "./data/jobe.txt";
     public static final Path TASKS_FILE_PATH = Paths.get(TASKS_FILE_PATH_STRING);
+    private File file;
     private StringBuilder statusMessages = new StringBuilder();
     
     /**
