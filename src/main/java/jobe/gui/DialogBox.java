@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,9 +31,10 @@ public class DialogBox extends HBox {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
-            fxmlLoader.load();
+            Parent dialogRoot = fxmlLoader.load();
             Circle clip = new Circle(49.5, 49.5, 38);
             displayPicture.setClip(clip);
+            dialogRoot.getStylesheets().add(getClass().getResource("/css/dialog-box.css").toExternalForm());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,16 +51,56 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+        
+        dialog.getStyleClass().add("reply-label");
     }
     
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
     
-    public static DialogBox getJobeDialog(String text, Image img) {
+    public static DialogBox getJobeDialog(String text, Image img, String commandType) {
         var db = new DialogBox(text, img);
         db.flip();
+        db.changeDialogStyle(commandType);
         return db;
+    }
+    
+    private void changeDialogStyle(String commandType) {
+        switch(commandType) {
+        case "TodoCommand":
+            dialog.getStyleClass().add("todo-label");
+            break;
+        case "DeadlineCommand":
+            dialog.getStyleClass().add("deadline-label");
+            break;
+        case "EventCommand":
+            dialog.getStyleClass().add("event-label");
+            break;
+        case "MarkCommand":
+            dialog.getStyleClass().add("mark-label");
+            break;
+        case "UnmarkCommand":
+            dialog.getStyleClass().add("unmark-label");
+            break;
+        case "DeleteCommand":
+            dialog.getStyleClass().add("delete-label");
+            break;
+        case "ListCommand":
+            dialog.getStyleClass().add("list-label");
+            break;
+        case "FindCommand":
+            dialog.getStyleClass().add("find-label");
+            break;
+        case "HelloCommand":
+            dialog.getStyleClass().add("hello-label");
+            break;
+        case "ErrorCommand":
+            dialog.getStyleClass().add("error-label");
+            break;
+        default:
+        
+        }
     }
 }
 

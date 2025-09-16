@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import jobe.Jobe;
+import jobe.command.CommandType;
 import jobe.ui.Ui;
 
 /**
@@ -33,9 +34,10 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         this.ui = new Ui();
         this.ui.showHelloResponse();
+        userInput.setFocusTraversable(false);
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(
-                DialogBox.getJobeDialog(this.ui.getResponse(), jobeImage)
+                DialogBox.getJobeDialog(this.ui.getResponse(), jobeImage, "HelloCommand")
         );
     }
     
@@ -54,9 +56,10 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = jobe.getResponse(input);
+        String commandType = jobe.getCommandType() != null ? jobe.getCommandType() : "ErrorCommand";
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getJobeDialog(response, jobeImage)
+                DialogBox.getJobeDialog(response, jobeImage, commandType)
         );
         userInput.clear();
     }
@@ -72,7 +75,7 @@ public class MainWindow extends AnchorPane {
         }
         
         dialogContainer.getChildren().add(
-                DialogBox.getJobeDialog(storageMessages, jobeImage)
+                DialogBox.getJobeDialog(storageMessages, jobeImage, "ErrorCommand")
         );
     }
 }

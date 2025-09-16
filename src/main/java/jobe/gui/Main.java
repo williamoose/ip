@@ -24,6 +24,10 @@ public class Main extends Application {
             
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setMinHeight(220);
+            stage.setMinWidth(417);
+            
+            scene.getStylesheets().add(getClass().getResource("/css/main.css").toExternalForm());
             
             MainWindow controller = fxmlLoader.getController();
             controller.setJobe(jobe);
