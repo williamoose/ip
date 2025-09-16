@@ -28,7 +28,7 @@ public class TaskList {
      */
     public Task markTask(int index) throws JobeException {
         if (index > this.size()) {
-            throw new JobeException("OOPS!!!! You are trying to mark a task which does not exist!");
+            throwIndexOutOfBoundsException();
         }
         
         Task task = this.getTask(index);
@@ -45,7 +45,7 @@ public class TaskList {
      */
     public Task unmarkTask(int index) throws JobeException {
         if (index > this.size()) {
-            throw new JobeException("OOPS!!!! You are trying to unmark a task which does not exist!");
+            throwIndexOutOfBoundsException();
         }
         
         Task task = this.getTask(index);
@@ -106,7 +106,7 @@ public class TaskList {
      */
     public Task deleteTask(int index) throws JobeException {
         if (index > this.size()) {
-            throw new JobeException("OOPS!!!! You are trying to delete a task which does not exist!");
+           throwIndexOutOfBoundsException();
         }
         
         Task task = this.getTask(index);
@@ -195,5 +195,9 @@ public class TaskList {
         return this.toStream()
                 .map(Task::convertToFileFormat)
                 .collect(Collectors.joining("\n"));
+    }
+    
+    private void throwIndexOutOfBoundsException() throws JobeException {
+        throw new JobeException("OOPS!!!! There are tasks which match the input index in your list!");
     }
 }

@@ -3,6 +3,7 @@ package jobe.dateutils;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 import jobe.exception.JobeException;
 
@@ -28,9 +29,7 @@ public class DateUtils {
             LocalDateTime date = LocalDateTime.parse(input.trim(), INPUT_DATE_TIME_FORMATTER);
             return date.format(OUTPUT_DATE_TIME_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new JobeException(
-              "OOPS!!!! Failed to parse DateTime, please format your Date and Time as dd/mm/yyyy hhmm."
-            );
+            throw new JobeException("OOPS!!!! Failed to parse DateTime, please format as dd/mm/yyyy hhmm.");
         }
     }
     
