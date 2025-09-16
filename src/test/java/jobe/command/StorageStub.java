@@ -5,7 +5,7 @@ import jobe.task.TaskList;
 
 public class StorageStub extends Storage {
     
-    public boolean isTaskSaved = false;
+    private boolean isTaskSaved = false;
     
     public StorageStub() {
         super(new TaskList()); // still needs to call super, but you can ignore the taskList
@@ -18,6 +18,10 @@ public class StorageStub extends Storage {
     
     @Override
     public void loadTasks(TaskList taskList) {
+    }
+    
+    public boolean isTaskSaved() {
+        return this.isTaskSaved;
     }
 }
 

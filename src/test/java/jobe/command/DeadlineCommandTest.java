@@ -3,7 +3,6 @@ package jobe.command;
 import static jobe.command.DeadlineCommand.createDeadlineCommand;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -30,9 +29,9 @@ public class DeadlineCommandTest {
     @Test
     public void testExecute_createsTaskAndSaves() throws JobeException {
         cmd.execute(taskListStub, uiStub, storageStub);
-        assertEquals("deadline test passed", taskListStub.lastTask.getTaskDescription());
-        assertTrue(uiStub.isResponseCalled);
-        assertTrue(storageStub.isTaskSaved);
+        assertEquals("deadline test passed", taskListStub.getLastTask().getTaskDescription());
+        assertTrue(uiStub.isResponseCalled());
+        assertTrue(storageStub.isTaskSaved());
     }
     
     @Test
@@ -44,8 +43,7 @@ public class DeadlineCommandTest {
     @Test
     public void createDeadlineCommand_missingArgs_throwsException() {
         JobeException exception = assertThrows(
-                JobeException.class,
-                () -> createDeadlineCommand("")
+                JobeException.class, () -> createDeadlineCommand("")
         );
         assertEquals(
                 "OOPS!!!! The description of a deadline task cannot be empty!",
@@ -56,8 +54,7 @@ public class DeadlineCommandTest {
     @Test
     public void createDeadlineCommand_missingDeadline_throwsException() {
         JobeException exception = assertThrows(
-                JobeException.class,
-                () -> createDeadlineCommand("test")
+                JobeException.class, () -> createDeadlineCommand("test")
         );
         assertEquals(
                 "OOPS!!!! You forgot to specify the deadline!",
@@ -68,8 +65,7 @@ public class DeadlineCommandTest {
     @Test
     public void createDeadlineCommand_tooManyArgs_throwsException() {
         JobeException exception = assertThrows(
-                JobeException.class,
-                () -> createDeadlineCommand("test /by test /by test /by test")
+                JobeException.class, () -> createDeadlineCommand("test /by test /by test /by test")
         );
         assertTrue(exception.getMessage().contains("OOPS!!!! You have entered additional parameters!"));
     }

@@ -14,6 +14,12 @@ public class EventCommand extends Command {
     private String startDate;
     private String endDate;
     
+    public EventCommand(String taskDescription, String startDate, String endDate) {
+        this.taskDescription = taskDescription;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+    
     /**
      * Creates an EventCommand object.
      *
@@ -48,12 +54,6 @@ public class EventCommand extends Command {
         }
         
         return new String[] { taskDescription[0], dates[0].trim(), dates[1].trim() };
-    }
-    
-    public EventCommand(String taskDescription, String startDate, String endDate) throws JobeException {
-        this.taskDescription = taskDescription;
-        this.startDate = startDate;
-        this.endDate = endDate;
     }
     
     /**

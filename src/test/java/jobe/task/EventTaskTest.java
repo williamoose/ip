@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import jobe.exception.JobeException;
-import jobe.task.EventTask;
 
 // This test file was generated using ChatGPT as part of the
 // A-AiAssisted increment.

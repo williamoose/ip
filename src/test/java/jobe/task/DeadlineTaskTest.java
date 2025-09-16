@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import jobe.exception.JobeException;
-import jobe.task.DeadlineTask;
 
 public class DeadlineTaskTest {
     

@@ -1,6 +1,5 @@
 package jobe.command;
 
-import static jobe.command.DeadlineCommand.createDeadlineCommand;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,16 +27,15 @@ public class TodoCommandTest {
     @Test
     public void testExecute_createsTaskAndSaves() throws JobeException {
         cmd.execute(taskListStub, uiStub, storageStub);
-        assertEquals("todo test passed", taskListStub.lastTask.getTaskDescription());
-        assertTrue(uiStub.isResponseCalled);
-        assertTrue(storageStub.isTaskSaved);
+        assertEquals("todo test passed", taskListStub.getLastTask().getTaskDescription());
+        assertTrue(uiStub.isResponseCalled());
+        assertTrue(storageStub.isTaskSaved());
     }
     
     @Test
     public void createTodoCommand_missingArgs_throwsException() {
         JobeException exception = assertThrows(
-                JobeException.class,
-                () -> new TodoCommand("")
+                JobeException.class, () -> new TodoCommand("")
         );
         assertEquals(
                 "OOPS!!!! The description of a todo task cannot be empty!",

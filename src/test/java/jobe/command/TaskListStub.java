@@ -7,10 +7,10 @@ import jobe.task.TaskList;
 
 public class TaskListStub extends TaskList {
     
-    public Task lastTask;
+    private Task lastTask;
     
     @Override
-    public Task markTask(int index)  {
+    public Task markTask(int index) {
         this.lastTask = new Task("mark test passed");
         return lastTask;
     }
@@ -39,15 +39,19 @@ public class TaskListStub extends TaskList {
         return lastTask;
     }
     
-   @Override
+    @Override
     public Task deleteTask(int index) {
-       this.lastTask = new Task("delete test passed");
-       return lastTask;
+        this.lastTask = new Task("delete test passed");
+        return lastTask;
     }
     
     @Override
     public List<Task> findTask(String keyword) {
         this.lastTask = new Task("find test passed");
         return List.of(this.lastTask);
+    }
+    
+    public Task getLastTask() {
+        return this.lastTask;
     }
 }

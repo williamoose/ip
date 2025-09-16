@@ -1,12 +1,9 @@
 package jobe.command;
 
-import jobe.Jobe;
 import jobe.exception.JobeException;
 import jobe.storage.Storage;
-import jobe.stringutils.StringUtils;
 import jobe.task.Task;
 import jobe.task.TaskList;
-import jobe.task.TodoTask;
 import jobe.ui.Ui;
 
 /**

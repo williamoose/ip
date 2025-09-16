@@ -106,7 +106,7 @@ public class TaskList {
      */
     public Task deleteTask(int index) throws JobeException {
         if (index > this.size()) {
-           throwIndexOutOfBoundsException();
+            throwIndexOutOfBoundsException();
         }
         
         Task task = this.getTask(index);
@@ -123,8 +123,8 @@ public class TaskList {
      */
     public List<Task> findTask(String keyword) throws JobeException {
         List<Task> list = this.toStream()
-          .filter(task -> task.getTaskDescription().contains(keyword))
-          .toList();
+                .filter(task -> task.getTaskDescription().contains(keyword))
+                .toList();
         
         if (list.isEmpty()) {
             throw new JobeException("OOPS!!!! There are no matching tasks in your list!");

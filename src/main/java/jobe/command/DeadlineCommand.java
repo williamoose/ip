@@ -13,6 +13,11 @@ public class DeadlineCommand extends Command {
     private String taskDescription;
     private String deadline;
     
+    public DeadlineCommand(String taskDescription, String deadline) throws JobeException {
+        this.taskDescription = taskDescription;
+        this.deadline = deadline;
+    }
+    
     /**
      * Creates a DeadlineCommand Object
      *
@@ -43,11 +48,6 @@ public class DeadlineCommand extends Command {
         }
         
         return taskDescription;
-    }
-    
-    public DeadlineCommand(String taskDescription, String deadline) throws JobeException {
-        this.taskDescription = taskDescription;
-        this.deadline = deadline;
     }
     
     /**

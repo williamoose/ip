@@ -13,7 +13,7 @@ import jobe.ui.Ui;
 public class MarkCommand extends Command {
     private int index;
     
-    public MarkCommand(String args) throws JobeException{
+    public MarkCommand(String args) throws JobeException {
         this.index = Parser.parseTaskIndex(args);
     }
     

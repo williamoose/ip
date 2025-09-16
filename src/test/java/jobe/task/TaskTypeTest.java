@@ -16,10 +16,9 @@ public class TaskTypeTest {
     }
     
     @Test
-    public void StringToCommand_invalidCommand_throwsException() {
+    public void stringToCommand_invalidCommand_throwsException() {
         JobeException exception = assertThrows(
-                JobeException.class,
-                () -> TaskType.stringToCommand("H")
+                JobeException.class, () -> TaskType.stringToCommand("H")
         );
         assertEquals("OOPS!!!! There is an error with the TaskType of this input", exception.getMessage());
     }

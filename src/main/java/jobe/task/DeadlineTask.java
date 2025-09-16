@@ -14,6 +14,16 @@ public class DeadlineTask extends Task {
     
     private String deadline;
     
+    public DeadlineTask(String taskDescription, String deadline) {
+        super(taskDescription);
+        this.deadline = deadline;
+    }
+    
+    public DeadlineTask(String taskDescription, String deadline, boolean isDone) {
+        super(taskDescription, isDone);
+        this.deadline = deadline;
+    }
+    
     /**
      * Creates a DeadlineTask object with formatted arguments.
      *
@@ -31,16 +41,6 @@ public class DeadlineTask extends Task {
         assert formattedDeadline != null : "Deadline should never be null";
         
         return new DeadlineTask(taskDescription, formattedDeadline);
-    }
-    
-    public DeadlineTask(String taskDescription, String deadline) {
-        super(taskDescription);
-        this.deadline = deadline;
-    }
-    
-    public DeadlineTask(String taskDescription, String deadline, boolean isDone) {
-        super(taskDescription, isDone);
-        this.deadline = deadline;
     }
     
     @Override

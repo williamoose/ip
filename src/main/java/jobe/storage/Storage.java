@@ -60,9 +60,9 @@ public class Storage {
         
         try {
             if (file.createNewFile()) {
-               statusMessages.append("File 'jobe.txt' containing tasks successfully created!");
+                statusMessages.append("File 'jobe.txt' containing tasks successfully created!");
             } else {
-               statusMessages.append("File 'jobe.txt' could not be created");
+                statusMessages.append("File 'jobe.txt' could not be created");
             }
         } catch (IOException ioe) {
             statusMessages.append("Creation of file has failed with error: ")

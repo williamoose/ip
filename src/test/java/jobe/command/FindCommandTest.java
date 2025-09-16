@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import jobe.Jobe;
 import jobe.exception.JobeException;
 
 public class FindCommandTest {
@@ -28,8 +27,8 @@ public class FindCommandTest {
         FindCommand cmd = new FindCommand("book");
         
         cmd.execute(taskListStub, uiStub, storageStub);
-        assertEquals("find test passed", taskListStub.lastTask.getTaskDescription());
-        assertTrue(uiStub.isResponseCalled);
+        assertEquals("find test passed", taskListStub.getLastTask().getTaskDescription());
+        assertTrue(uiStub.isResponseCalled());
     }
     
     @Test

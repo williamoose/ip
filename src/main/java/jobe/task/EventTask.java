@@ -17,6 +17,18 @@ public class EventTask extends Task {
     private String startDate;
     private String endDate;
     
+    public EventTask(String taskDescription, String startDate, String endDate) {
+        super(taskDescription);
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+    
+    public EventTask(String taskDescription, String startDate, String endDate, boolean isDone) {
+        super(taskDescription, isDone);
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+    
     /**
      * Creates an EventTask with the formatted arguments.
      *
@@ -26,7 +38,9 @@ public class EventTask extends Task {
      * @return A EventTask object with the corresponding formatted arguments.
      * @throws JobeException If formatting of start or end date/time fails.
      */
-    public static EventTask createEventTask(String taskDescription, String startDate, String endDate) throws JobeException {
+    public static EventTask createEventTask(String taskDescription,
+                                            String startDate,
+                                            String endDate) throws JobeException {
         String startDateString = StringUtils.splitStringAndRemoveFirstWord(startDate);
         String endDateString = StringUtils.splitStringAndRemoveFirstWord(endDate);
         assert startDateString != null : "Start date/time should never be null";
@@ -46,19 +60,6 @@ public class EventTask extends Task {
         assert formattedEndDate != null : "End date should never be null";
         
         return new EventTask(taskDescription, formattedStartDate, formattedEndDate);
-    }
-    
-    public EventTask(String taskDescription, String startDate, String endDate) {
-        super(taskDescription);
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
-    
-    
-    public EventTask(String taskDescription, String startDate, String endDate, boolean isDone) {
-        super(taskDescription, isDone);
-        this.startDate = startDate;
-        this.endDate = endDate;
     }
     
     @Override

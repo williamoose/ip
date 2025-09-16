@@ -26,8 +26,8 @@ public class DeleteCommandTest {
     @Test
     public void testExecute_deletesTaskAndSaves() throws JobeException {
         cmd.execute(taskListStub, uiStub, storageStub);
-        assertEquals("delete test passed", taskListStub.lastTask.getTaskDescription());
-        assertTrue(uiStub.isResponseCalled);
-        assertTrue(storageStub.isTaskSaved);
+        assertEquals("delete test passed", taskListStub.getLastTask().getTaskDescription());
+        assertTrue(uiStub.isResponseCalled());
+        assertTrue(storageStub.isTaskSaved());
     }
 }

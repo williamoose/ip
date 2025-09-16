@@ -1,6 +1,5 @@
 package jobe.task;
 
-import jobe.Jobe;
 import jobe.exception.JobeException;
 
 /**
@@ -64,8 +63,8 @@ public class Task {
      */
     public void checkDuplicates(Task task, TaskList taskList) throws JobeException {
         boolean isDuplicate = taskList
-          .toStream()
-          .anyMatch(existing -> existing.isDuplicate(task));
+                .toStream()
+                .anyMatch(existing -> existing.isDuplicate(task));
         
         if (!isDuplicate) {
             return;

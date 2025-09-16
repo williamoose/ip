@@ -8,7 +8,7 @@ import jobe.ui.Ui;
 
 public class UiStub extends Ui {
 
-    boolean isResponseCalled = false;
+    private boolean isResponseCalled = false;
     
     @Override
     public void showHelloResponse() {
@@ -53,5 +53,9 @@ public class UiStub extends Ui {
     @Override
     public void showUnmarkResponse(Task task) {
         this.isResponseCalled = true;
+    }
+    
+    public boolean isResponseCalled() {
+        return this.isResponseCalled;
     }
 }

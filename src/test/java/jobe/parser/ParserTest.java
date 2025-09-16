@@ -45,8 +45,7 @@ public class ParserTest {
     @Test
     public void testParseIndex_nonNumberIndex_throwsException() {
         JobeException exception = assertThrows(
-                JobeException.class,
-                () -> Parser.parseTaskIndex("e")
+                JobeException.class, () -> Parser.parseTaskIndex("e")
         );
         assertEquals("OOPS!!!! The index must be a number!", exception.getMessage());
     }
@@ -59,21 +58,21 @@ public class ParserTest {
     }
     
     @Test
-    void parseTask_EventTask_returnsEventTask() throws JobeException {
+    void parseTask_eventTask_returnsEventTask() throws JobeException {
         String input = "E / [X] / Project meeting / 24/09/2025 1800 / 24/09/2025 2000";
         Task task = Parser.parseTask(input);
         assertInstanceOf(EventTask.class, task);
     }
     
     @Test
-    void parseTask_TodoTask_returnsEventTask() throws JobeException {
+    void parseTask_todoTask_returnsEventTask() throws JobeException {
         String input = "T / [X] / Read book";
         Task task = Parser.parseTask(input);
         assertInstanceOf(TodoTask.class, task);
     }
     
     @Test
-    void parseTask_invalidTask_throwsException() throws Exception {
+    void parseTask_invalidTask_throwsException() {
         String input = "R / [X] / Read book";
         assertThrows(JobeException.class, () -> Parser.parseTask(input));
     }

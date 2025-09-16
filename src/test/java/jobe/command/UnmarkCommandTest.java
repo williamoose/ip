@@ -26,8 +26,8 @@ public class UnmarkCommandTest {
     @Test
     public void testExecute_unmarksTaskAndSaves() throws JobeException {
         cmd.execute(taskListStub, uiStub, storageStub);
-        assertEquals("unmark test passed", taskListStub.lastTask.getTaskDescription());
-        assertTrue(uiStub.isResponseCalled);
-        assertTrue(storageStub.isTaskSaved);
+        assertEquals("unmark test passed", taskListStub.getLastTask().getTaskDescription());
+        assertTrue(uiStub.isResponseCalled());
+        assertTrue(storageStub.isTaskSaved());
     }
 }

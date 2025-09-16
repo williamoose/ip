@@ -32,8 +32,8 @@ public class Jobe {
      */
     public String getResponse(String input) {
         assert taskList != null : "TaskList should never be null";
-        assert ui != null: "Ui should never be null";
-        assert storage != null: "Storage should never be null";
+        assert ui != null : "Ui should never be null";
+        assert storage != null : "Storage should never be null";
         
         try {
             if (input.isBlank()) {

@@ -26,8 +26,8 @@ public class MarkCommandTest {
     @Test
     public void testExecute_marksTaskAndSaves() throws JobeException {
         cmd.execute(taskListStub, uiStub, storageStub);
-        assertEquals("mark test passed", taskListStub.lastTask.getTaskDescription());
-        assertTrue(uiStub.isResponseCalled);
-        assertTrue(storageStub.isTaskSaved);
+        assertEquals("mark test passed", taskListStub.getLastTask().getTaskDescription());
+        assertTrue(uiStub.isResponseCalled());
+        assertTrue(storageStub.isTaskSaved());
     }
 }

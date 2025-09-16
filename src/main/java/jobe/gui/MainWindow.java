@@ -50,8 +50,8 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = jobe.getResponse(input);
         dialogContainer.getChildren().addAll(
-          DialogBox.getUserDialog(input, userImage),
-          DialogBox.getJobeDialog(response, jobeImage)
+                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getJobeDialog(response, jobeImage)
         );
         userInput.clear();
     }
@@ -64,7 +64,7 @@ public class MainWindow extends AnchorPane {
         }
         
         dialogContainer.getChildren().add(
-          DialogBox.getJobeDialog(storageMessages, jobeImage)
+                DialogBox.getJobeDialog(storageMessages, jobeImage)
         );
     }
 }

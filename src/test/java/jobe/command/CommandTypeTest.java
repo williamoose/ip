@@ -16,10 +16,9 @@ public class CommandTypeTest {
     }
     
     @Test
-    public void StringToCommand_invalidCommand_throwsException() {
+    public void stringToCommand_invalidCommand_throwsException() {
         JobeException exception = assertThrows(
-                JobeException.class,
-                () -> CommandType.stringToCommand("HELP")
+                JobeException.class, () -> CommandType.stringToCommand("HELP")
         );
         assertEquals("OOPS!!!! I'm Sorry, but I do not recognise the command.", exception.getMessage());
     }
