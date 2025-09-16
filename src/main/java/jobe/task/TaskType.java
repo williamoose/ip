@@ -21,7 +21,7 @@ public enum TaskType {
         try {
             return TaskType.valueOf(input.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new JobeException("OOPS!!!! There is an error with TaskType enums");
+            throw new JobeException("OOPS!!!! There is an error with the TaskType of this input");
         }
     }
 }

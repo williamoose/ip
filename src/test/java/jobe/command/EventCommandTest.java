@@ -1,9 +1,9 @@
 package jobe.command;
 
 import static jobe.command.DeadlineCommand.createDeadlineCommand;
+import static jobe.command.EventCommand.createEventCommand;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -12,16 +12,16 @@ import org.junit.jupiter.api.Test;
 
 import jobe.exception.JobeException;
 
-public class DeadlineCommandTest {
+public class EventCommandTest {
     
-    private DeadlineCommand cmd;
+    private EventCommand cmd;
     private TaskListStub taskListStub;
     private UiStub uiStub;
     private StorageStub storageStub;
     
     @BeforeEach
     public void setUp() throws JobeException {
-        cmd = new DeadlineCommand("test", "test");
+        cmd = new EventCommand("test", "test", "test");
         taskListStub = new TaskListStub();
         uiStub = new UiStub();
         storageStub = new StorageStub();
@@ -30,7 +30,7 @@ public class DeadlineCommandTest {
     @Test
     public void testExecute_createsTaskAndSaves() throws JobeException {
         cmd.execute(taskListStub, uiStub, storageStub);
-        assertEquals("deadline test passed", taskListStub.lastTask.getTaskDescription());
+        assertEquals("event test passed", taskListStub.lastTask.getTaskDescription());
         assertTrue(uiStub.isResponseCalled);
         assertTrue(storageStub.isTaskSaved);
     }
@@ -42,25 +42,37 @@ public class DeadlineCommandTest {
     }
     
     @Test
-    public void createDeadlineCommand_missingArgs_throwsException() {
+    public void createEventCommand_missingArgs_throwsException() {
         JobeException exception = assertThrows(
                 JobeException.class,
-                () -> createDeadlineCommand("")
+                () -> createEventCommand("")
         );
         assertEquals(
-                "OOPS!!!! The description of a deadline task cannot be empty!",
+                "OOPS!!!! The description of an event task cannot be empty!",
                 exception.getMessage()
         );
     }
     
     @Test
-    public void createDeadlineCommand_missingDeadline_throwsException() {
+    public void createDeadlineCommand_missingStartDate_throwsException() {
         JobeException exception = assertThrows(
                 JobeException.class,
-                () -> createDeadlineCommand("test")
+                () -> createEventCommand("test")
         );
         assertEquals(
-                "OOPS!!!! You forgot to specify the deadline!",
+                "OOPS!!!! You forgot to specify the START date/time!",
+                exception.getMessage()
+        );
+    }
+    
+    @Test
+    public void createDeadlineCommand_missingEndDate_throwsException() {
+        JobeException exception = assertThrows(
+                JobeException.class,
+                () -> createEventCommand("test /from test")
+        );
+        assertEquals(
+                "OOPS!!!! You forgot to specify the END date/time!",
                 exception.getMessage()
         );
     }
@@ -69,7 +81,7 @@ public class DeadlineCommandTest {
     public void createDeadlineCommand_tooManyArgs_throwsException() {
         JobeException exception = assertThrows(
                 JobeException.class,
-                () -> createDeadlineCommand("test /by test /by test /by test")
+                () -> createEventCommand("test /from test /to test /to test")
         );
         assertTrue(exception.getMessage().contains("OOPS!!!! You have entered additional parameters!"));
     }
