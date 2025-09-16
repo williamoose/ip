@@ -1,7 +1,6 @@
 package jobe;
 
 import jobe.command.Command;
-import jobe.command.CommandType;
 import jobe.exception.JobeException;
 import jobe.parser.Parser;
 import jobe.storage.Storage;

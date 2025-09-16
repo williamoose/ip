@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import jobe.Jobe;
-import jobe.command.CommandType;
 import jobe.ui.Ui;
 
 /**
