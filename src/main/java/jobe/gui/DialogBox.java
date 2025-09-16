@@ -32,7 +32,7 @@ public class DialogBox extends HBox {
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             Parent dialogRoot = fxmlLoader.load();
-            Circle clip = new Circle(49.5, 49.5, 38);
+            Circle clip = new Circle(50, 50, 35);
             displayPicture.setClip(clip);
             dialogRoot.getStylesheets().add(getClass().getResource("/css/dialog-box.css").toExternalForm());
         } catch (IOException e) {

@@ -21,7 +21,8 @@
                    prefWidth="324.0"
                    AnchorPane.bottomAnchor="1.0"
                    AnchorPane.leftAnchor="0.0"
-                   AnchorPane.rightAnchor="76.0"/>
+                   AnchorPane.rightAnchor="76.0"
+                   style="-fx-background-radius: 0.5em; -fx-border-radius: 0.5em; -fx-padding: 0 10 0 10;"/>
         <Button fx:id="sendButton"
                 layoutX="324.0"
                 layoutY="558.0"
@@ -31,7 +32,8 @@
                 prefWidth="76.0"
                 text="Send"
                 AnchorPane.bottomAnchor="1.0"
-                AnchorPane.rightAnchor="0.0"/>
+                AnchorPane.rightAnchor="0.0"
+                style="-fx-background-radius: 0.5em; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0.5, 0, 2);"/>
         <ScrollPane fx:id="scrollPane"
                     fitToWidth="true"
                     hbarPolicy="NEVER"
@@ -42,11 +44,13 @@
                     AnchorPane.bottomAnchor="43.0"
                     AnchorPane.leftAnchor="0.0"
                     AnchorPane.rightAnchor="2.0"
-                    AnchorPane.topAnchor="0.0">
+                    AnchorPane.topAnchor="0.0"
+                    style="-fx-background-color: transparent; -fx-padding: 10;">
             <content>
                 <VBox fx:id="dialogContainer"
                       prefHeight="552.0"
-                      prefWidth="388.0" />
+                      prefWidth="388.0"
+                      spacing="10.0"/>
             </content>
         </ScrollPane>
     </children>

@@ -25,7 +25,7 @@ public class MainWindow extends AnchorPane {
     private Ui ui;
     
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.jpg"));
-    private Image jobeImage = new Image(this.getClass().getResourceAsStream("/images/jobe.jpg"));
+    private Image jobeImage = new Image(this.getClass().getResourceAsStream("/images/robot3.png"));
     
     /**
      * Initialises the Jobe app.

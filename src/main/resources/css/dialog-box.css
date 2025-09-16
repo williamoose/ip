@@ -6,6 +6,7 @@
     -fx-border-radius: 1em 1em 0 1em;
     -fx-text-fill: #333333;
     -fx-padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 1);
 }
 
 .reply-label {
@@ -13,67 +14,72 @@
     -fx-background-radius: 1em 1em 1em 0;
     -fx-border-radius: 1em 1em 1em 0;
     -fx-text-fill: #333333;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 1);
 }
 
 .list-label {
     -fx-background-color: #A3C4FF;
     -fx-text-fill: #1A1A1A;
+    -fx-padding: 15px;
 }
 
 .todo-label {
     -fx-background-color: #FFF7A8;
     -fx-text-fill: #333333;
+    -fx-padding: 15px;
 }
 
 .deadline-label {
     -fx-background-color: #B0E0FF;
     -fx-text-fill: #1A1A1A;
+    -fx-padding: 15px;
 }
 
 .event-label {
     -fx-background-color: #FFB3FF;
     -fx-text-fill: #1A1A1A;
+    -fx-padding: 15px;
 }
 
 .mark-label {
     -fx-background-color: #A0FFD9;
     -fx-text-fill: #1A1A1A;
+    -fx-padding: 15px;
 }
 
 .unmark-label {
     -fx-background-color: #FFBFA0;
     -fx-text-fill: #1A1A1A;
+    -fx-padding: 15px;
 }
 
 .delete-label {
     -fx-background-color: #D6A0FF;
     -fx-text-fill: #1A1A1A;
+    -fx-padding: 15px;
 }
 
 .find-label {
     -fx-background-color: #FFEFA0;
     -fx-text-fill: #1A1A1A;
+    -fx-padding: 15px;
 }
 
 .hello-label {
     -fx-background-color: #A0FFD6;
     -fx-text-fill: #1A1A1A;
+    -fx-padding: 15px;
 }
 
 .error-label {
     -fx-background-color: #FF9FA0;
     -fx-text-fill: #1A1A1A;
+    -fx-padding: 15px;
 }
 
 #displayPicture {
-    /* Shadow effect on image. */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5);
-
-    /* Change size of image. */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 5, 5);
     -fx-scale-x: 1;
     -fx-scale-y: 1;
-
-    /* Rotate image clockwise by degrees. */
     -fx-rotate: 0;
 }
-
