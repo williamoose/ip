@@ -13,7 +13,13 @@ public class DeadlineCommand extends Command {
     private String taskDescription;
     private String deadline;
     
-    public DeadlineCommand(String taskDescription, String deadline) throws JobeException {
+    /**
+     * Creates a DeadlineCommand object.
+     *
+     * @param taskDescription Description of task.
+     * @param deadline Deadline of task.
+     */
+    public DeadlineCommand(String taskDescription, String deadline) {
         this.taskDescription = taskDescription;
         this.deadline = deadline;
     }

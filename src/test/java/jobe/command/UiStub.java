@@ -6,6 +6,9 @@ import jobe.task.Task;
 import jobe.task.TaskList;
 import jobe.ui.Ui;
 
+/**
+ * Represents a mock Ui object for testing purposes.
+ */
 public class UiStub extends Ui {
 
     private boolean isResponseCalled = false;

@@ -14,11 +14,24 @@ public class DeadlineTask extends Task {
     
     private String deadline;
     
+    /**
+     * Creates a DeadlineTask object.
+     *
+     * @param taskDescription Description of task.
+     * @param deadline Deadline of task.
+     */
     public DeadlineTask(String taskDescription, String deadline) {
         super(taskDescription);
         this.deadline = deadline;
     }
     
+    /**
+     * Creates a DeadlineTask object if the task completion status is explicitly specified.
+     *
+     * @param taskDescription Description of task.
+     * @param deadline Deadline of task.
+     * @param isDone Completion status of task.
+     */
     public DeadlineTask(String taskDescription, String deadline, boolean isDone) {
         super(taskDescription, isDone);
         this.deadline = deadline;
@@ -43,6 +56,9 @@ public class DeadlineTask extends Task {
         return new DeadlineTask(taskDescription, formattedDeadline);
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isDuplicate(Task task) {
         boolean isSameDescription = super.isDuplicate(task);
@@ -67,6 +83,12 @@ public class DeadlineTask extends Task {
         return isBeforeDeadline(otherTask);
     }
     
+    /**
+     * Checks whether the deadline of the current task is before the deadline of the task to be compared.
+     *
+     * @param otherTask Task to be compared.
+     * @return A boolean representing whether the deadline of current task is before the other task.
+     */
     private boolean isBeforeDeadline(DeadlineTask otherTask) {
         DateTimeFormatter formatter = DateUtils.OUTPUT_DATE_TIME_FORMATTER;
         LocalDateTime dt1 = LocalDateTime.parse(otherTask.deadline, formatter);
@@ -74,6 +96,9 @@ public class DeadlineTask extends Task {
         return dt1.isBefore(dt2);
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void throwDuplicateTaskException() throws JobeException {
         throw new JobeException("OOPS!!!! A Deadline task with the same description already "

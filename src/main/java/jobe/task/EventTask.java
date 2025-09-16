@@ -17,12 +17,27 @@ public class EventTask extends Task {
     private String startDate;
     private String endDate;
     
+    /**
+     * Creates an EventTask object.
+     *
+     * @param taskDescription Description of task.
+     * @param startDate Start date of task.
+     * @param endDate End date of task.
+     */
     public EventTask(String taskDescription, String startDate, String endDate) {
         super(taskDescription);
         this.startDate = startDate;
         this.endDate = endDate;
     }
     
+    /**
+     * Creates an EventTask object if completion status is explicitly defined.
+     *
+     * @param taskDescription Description of task.
+     * @param startDate Start date of task.
+     * @param endDate End date of task.
+     * @param isDone Completion status of task.
+     */
     public EventTask(String taskDescription, String startDate, String endDate, boolean isDone) {
         super(taskDescription, isDone);
         this.startDate = startDate;
@@ -48,8 +63,8 @@ public class EventTask extends Task {
         assert endDateString != null : "End date/time should never be null";
         assert !endDateString.isEmpty() : "End date/time should never be empty";
         
-        boolean isInvalidDate = DateUtils.isInvalidDate(startDateString, endDateString);
-        if (isInvalidDate) {
+        boolean isValidDate = DateUtils.isStartDateBeforeEndDate(startDateString, endDateString);
+        if (!isValidDate) {
             throw new JobeException("OOPS!!!! Your end date is before your start date. "
                     + "Please check your input dates!");
         }
@@ -62,6 +77,9 @@ public class EventTask extends Task {
         return new EventTask(taskDescription, formattedStartDate, formattedEndDate);
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isDuplicate(Task task) {
         boolean isSameDescription = super.isDuplicate(task);
@@ -85,6 +103,12 @@ public class EventTask extends Task {
         return isOverlap(otherTask);
     }
     
+    /**
+     * Checks whether the time range of the current event task overlaps with another task.
+     *
+     * @param otherTask Task to be compared.
+     * @return A boolean representing whether the time range of the two tasks overlaps.
+     */
     private boolean isOverlap(EventTask otherTask) {
         DateTimeFormatter formatter = DateUtils.OUTPUT_DATE_TIME_FORMATTER;
         LocalDateTime thisStart = LocalDateTime.parse(this.startDate, formatter);
@@ -96,6 +120,9 @@ public class EventTask extends Task {
         return thisStart.isBefore(otherEnd) && otherStart.isBefore(thisEnd);
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void throwDuplicateTaskException() throws JobeException {
         throw new JobeException("OOPS!!!! An Event with the same description "

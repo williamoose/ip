@@ -26,6 +26,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.jpg"));
     private Image jobeImage = new Image(this.getClass().getResourceAsStream("/images/jobe.jpg"));
     
+    /**
+     * Initialises the Jobe app.
+     */
     @FXML
     public void initialize() {
         this.ui = new Ui();
@@ -36,7 +39,9 @@ public class MainWindow extends AnchorPane {
         );
     }
     
-    /** Injects the Duke instance */
+    /**
+     * Injects the Jobe instance
+     */
     public void setJobe(Jobe jobe) {
         this.jobe = jobe;
     }
@@ -56,6 +61,9 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
     
+    /**
+     * Shows messages relating to loading of files to the user upon startup.
+     */
     public void showStartupMessages() {
         String storageMessages = jobe.getStorage().getStatusMessages();
         

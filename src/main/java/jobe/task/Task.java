@@ -73,6 +73,12 @@ public class Task {
         task.throwDuplicateTaskException();
     }
     
+    /**
+     * Checks whether the current task object is a duplicate of the input task.
+     *
+     * @param task Task to be compared.
+     * @return A boolean value representing whether the two tasks are duplicates.
+     */
     public boolean isDuplicate(Task task) {
         if (this == task) {
             return true;
@@ -86,6 +92,11 @@ public class Task {
         return this.taskDescription.trim().equals(task.taskDescription.trim());
     }
     
+    /**
+     * Throws a JobeException if two tasks are duplicates.
+     *
+     * @throws JobeException If two tasks are duplicates.
+     */
     public void throwDuplicateTaskException() throws JobeException {
         throw new JobeException("OOPS!!!! A task with the same description already exists!\n"
                 + "Please create a different task!");

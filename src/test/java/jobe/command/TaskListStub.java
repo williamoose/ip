@@ -5,6 +5,9 @@ import java.util.List;
 import jobe.task.Task;
 import jobe.task.TaskList;
 
+/**
+ * Represents a mock TaskList object for testing purposes.
+ */
 public class TaskListStub extends TaskList {
     
     private Task lastTask;

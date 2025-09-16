@@ -12,6 +12,12 @@ import jobe.ui.Ui;
 public class TodoCommand extends Command {
     private String taskDescription;
     
+    /**
+     * Creates a TodoCommand object.
+     *
+     * @param taskDescription Description of task.
+     * @throws JobeException Ff the user forgets to input the task description.
+     */
     public TodoCommand(String taskDescription) throws JobeException {
         if (taskDescription == null || taskDescription.isBlank()) {
             throw new JobeException("OOPS!!!! The description of a todo task cannot be empty!");

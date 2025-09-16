@@ -14,6 +14,12 @@ import jobe.ui.Ui;
 public class FindCommand extends Command {
     private String keyword;
     
+    /**
+     * Creates a FindCommand object.
+     *
+     * @param keyword Keyword of task the user is looking for.
+     * @throws JobeException If user forgets to input the keyword.
+     */
     public FindCommand(String keyword) throws JobeException {
         if (keyword == null || keyword.isBlank()) {
             throw new JobeException("OOPS!!!! You forgot to enter your keyword!");

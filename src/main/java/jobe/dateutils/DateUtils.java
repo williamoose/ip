@@ -32,9 +32,16 @@ public class DateUtils {
         }
     }
     
-    public static boolean isInvalidDate(String startDate, String endDate) {
+    /**
+     * Checks whether the start date of an event task is before the end date.
+     *
+     * @param startDate Start date of an event task.
+     * @param endDate End date of an event task.
+     * @return A boolean representing whether the start date is before the end date.
+     */
+    public static boolean isStartDateBeforeEndDate(String startDate, String endDate) {
         LocalDateTime start = LocalDateTime.parse(startDate.trim(), INPUT_DATE_TIME_FORMATTER);
         LocalDateTime end = LocalDateTime.parse(endDate.trim(), INPUT_DATE_TIME_FORMATTER);
-        return !start.isBefore(end);
+        return start.isBefore(end);
     }
 }

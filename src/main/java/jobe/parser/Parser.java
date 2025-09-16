@@ -88,6 +88,13 @@ public class Parser {
         }
     }
     
+    /**
+     * Parses input task index into and integer.
+     *
+     * @param args User input task index.
+     * @return integer representing the task index.
+     * @throws JobeException If user enters incorrect inputs.
+     */
     public static int parseTaskIndex(String args) throws JobeException {
         try {
             if (args.isBlank()) {
@@ -104,6 +111,13 @@ public class Parser {
         }
     }
     
+    /**
+     * Splits input from file into its components.
+     *
+     * @param input input task from data file.
+     * @return Array of strings containing individual components of a task.
+     * @throws JobeException If an error occurs when reading the file input.
+     */
     private static String[] splitTask(String input) throws JobeException {
         if (input == null || input.isBlank()) {
             throw new JobeException("OOPS!!!! Missing or invalid file input!");

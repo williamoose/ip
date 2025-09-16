@@ -3,6 +3,9 @@ package jobe.command;
 import jobe.storage.Storage;
 import jobe.task.TaskList;
 
+/**
+ * Represents a mock storage object for testing purposes.
+ */
 public class StorageStub extends Storage {
     
     private boolean isTaskSaved = false;
