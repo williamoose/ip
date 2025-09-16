@@ -1,6 +1,7 @@
 package jobe;
 
 import jobe.command.Command;
+import jobe.command.CommandType;
 import jobe.exception.JobeException;
 import jobe.parser.Parser;
 import jobe.storage.Storage;
@@ -14,6 +15,7 @@ public class Jobe {
     private final TaskList taskList;
     private final Ui ui;
     private final Storage storage;
+    private String commandType;
     
     /**
      * Initialises a Jobe object.
@@ -41,6 +43,7 @@ public class Jobe {
             }
             
             Command c = Parser.parse(input);
+            this.commandType = c.getClass().getSimpleName();
             c.execute(this.taskList, this.ui, this.storage);
             return this.ui.getResponse();
         } catch (JobeException e) {
@@ -52,6 +55,10 @@ public class Jobe {
     
     public Storage getStorage() {
         return this.storage;
+    }
+    
+    public String getCommandType() {
+        return this.commandType;
     }
     
     /**
