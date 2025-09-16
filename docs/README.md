@@ -117,3 +117,8 @@ Similarly, after every command, the new/modified tasks are automatically saved t
 Advanced users are welcome to edit this data file. 
 
 Note: Do not move the data file to any other location as Jobe searches the exact file path to load your tasks.
+
+# Error Handling
+
+Jobe will notify you of any errors and how to fix them should you input something incorrectly.
+
