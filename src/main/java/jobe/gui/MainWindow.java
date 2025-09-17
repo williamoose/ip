@@ -24,7 +24,7 @@ public class MainWindow extends AnchorPane {
     private Ui ui;
     
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.jpg"));
-    private Image jobeImage = new Image(this.getClass().getResourceAsStream("/images/robot3.png"));
+    private Image jobeImage = new Image(this.getClass().getResourceAsStream("/images/robot4.jpg"));
     
     /**
      * Initialises the Jobe app.
@@ -74,7 +74,7 @@ public class MainWindow extends AnchorPane {
         }
         
         dialogContainer.getChildren().add(
-                DialogBox.getJobeDialog(storageMessages, jobeImage, "ErrorCommand")
+                DialogBox.getJobeDialog(storageMessages, jobeImage, "StorageCommand")
         );
     }
 }

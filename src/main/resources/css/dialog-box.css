@@ -77,6 +77,12 @@
     -fx-padding: 15px;
 }
 
+.storage-label {
+    -fx-background-color: #D2B48C;
+    -fx-text-fill: #1A1A1A;
+    -fx-padding: 15px;
+}
+
 #displayPicture {
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 5, 5);
     -fx-scale-x: 1;

@@ -32,7 +32,7 @@ public class DialogBox extends HBox {
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             Parent dialogRoot = fxmlLoader.load();
-            Circle clip = new Circle(50, 50, 35);
+            Circle clip = new Circle(50, 50, 40);
             displayPicture.setClip(clip);
             dialogRoot.getStylesheets().add(getClass().getResource("/css/dialog-box.css").toExternalForm());
         } catch (IOException e) {
@@ -98,6 +98,8 @@ public class DialogBox extends HBox {
         case "ErrorCommand":
             dialog.getStyleClass().add("error-label");
             break;
+        case "StorageCommand":
+            dialog.getStyleClass().add("storage-label");
         default:
         
         }
